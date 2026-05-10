@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  font-family: 'Space Grotesk', sans-serif;
+
+  cursor: url("assets/cursor/lightsaber.cur"), auto;
+}
+
+a,
+button,
+.actions a {
+  cursor: url("assets/cursor/lightsaber.cur"), pointer;
+}
+
+section {
+  min-height: 100vh;
+  padding: 100px 8%;
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio {
+  position: relative;
+  z-index: 2;
+}

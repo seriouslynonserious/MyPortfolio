@@ -1,0 +1,29 @@
+.skills h2 {
+  font-size: 56px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  padding: 32px;
+  border: 1px solid #ffffff18;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+}
+
+.card h3 {
+  color: #00d4ff;
+  margin-bottom: 16px;
+  font-size: 26px;
+}
+
+.card p {
+  color: #cccccc;
+  line-height: 1.6;
+}

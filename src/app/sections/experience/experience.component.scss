@@ -1,0 +1,137 @@
+.experience {
+  position: relative;
+}
+
+.section-label {
+  color: #00d4ff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.experience h2 {
+  font-size: clamp(44px, 7vw, 100px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.company-list {
+  max-width: 1050px;
+  display: grid;
+  gap: 26px;
+}
+
+.company-card {
+  position: relative;
+  padding: 34px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: blur(18px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.company-card:hover {
+  transform: translateY(-6px);
+  border-color: #00d4ff;
+}
+
+.company-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(0, 212, 255, 0.18),
+    transparent 35%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.company-card:hover::before {
+  opacity: 1;
+}
+
+.company-card span {
+  color: #00d4ff;
+  font-size: 14px;
+}
+
+.company-card h3 {
+  font-size: clamp(30px, 5vw, 58px);
+  margin: 10px 0;
+}
+
+.company-card p {
+  color: #aaaaaa;
+  font-size: 18px;
+}
+
+.company-card button {
+  position: relative;
+  z-index: 2;
+  color: white;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 13px 22px;
+  border-radius: 999px;
+}
+
+.project-panel {
+  margin-left: 55px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  transform-origin: top left;
+}
+
+.project-card {
+  padding: 30px;
+  border-radius: 26px;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: rgba(0, 212, 255, 0.07);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 80px rgba(0, 212, 255, 0.08);
+}
+
+.project-card h4 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  color: #00d4ff;
+  margin-bottom: 20px;
+}
+
+.project-card ul {
+  padding-left: 18px;
+  color: #cccccc;
+  line-height: 1.7;
+  display: grid;
+  gap: 10px;
+}
+
+.project-card li::marker {
+  color: #00d4ff;
+}
+
+@media (max-width: 768px) {
+  .company-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .project-panel {
+    margin-left: 0;
+  }
+}

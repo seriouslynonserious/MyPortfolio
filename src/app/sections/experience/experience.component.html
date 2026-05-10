@@ -1,0 +1,63 @@
+<section class="experience" id="experience">
+  <p class="section-label">Experience</p>
+  <h2>Companies I’ve Worked With</h2>
+
+  <div class="company-list">
+
+    <div class="company-card" (click)="toggleCompany('onelap')">
+      <div>
+        <span>Jan 2025 — Present</span>
+        <h3>Onelap Telematics</h3>
+        <p>Software Engineer · Noida</p>
+      </div>
+      <button>{{ activeCompany === 'onelap' ? 'Close' : 'View Work' }}</button>
+    </div>
+
+    <div class="project-panel" *ngIf="activeCompany === 'onelap'">
+      <div class="project-card">
+        <h4>Onelap Website</h4>
+        <p>E-Commerce Platform</p>
+        <ul>
+          <li>Redeveloped platform using Angular and Spring Boot.</li>
+          <li>Improved conversions by 21%.</li>
+          <li>Reduced load time by 32%.</li>
+          <li>Implemented payment gateway workflows.</li>
+        </ul>
+      </div>
+
+      <div class="project-card">
+        <h4>Onelap CRM</h4>
+        <p>Internal Business System</p>
+        <ul>
+          <li>Developed Spring Boot backend services.</li>
+          <li>Built reusable React UI components.</li>
+          <li>Optimized APIs and database queries.</li>
+          <li>Improved frontend-backend integration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="company-card" (click)="toggleCompany('tech')">
+      <div>
+        <span>Jun 2024 — Nov 2024</span>
+        <h3>Tech Mahindra</h3>
+        <p>Full Stack COE · Delhi</p>
+      </div>
+      <button>{{ activeCompany === 'tech' ? 'Close' : 'View Work' }}</button>
+    </div>
+
+    <div class="project-panel" *ngIf="activeCompany === 'tech'">
+      <div class="project-card">
+        <h4>Full Stack Trainee</h4>
+        <p>Angular · React · SQL · REST APIs</p>
+        <ul>
+          <li>Built full-stack applications in a collaborative environment.</li>
+          <li>Developed responsive user interfaces.</li>
+          <li>Integrated backend services with frontend modules.</li>
+          <li>Worked on API integration and database operations.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
