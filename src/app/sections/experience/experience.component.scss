@@ -56,8 +56,17 @@
   transition: opacity 0.35s ease;
 }
 
-.company-card:hover::before {
-  opacity: 1;
+.company-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(0, 212, 255, 0.08),
+    transparent 38%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
 .company-card span {
@@ -94,34 +103,56 @@
 }
 
 .project-card {
+  position: relative;
   padding: 30px;
   border-radius: 26px;
-  border: 1px solid rgba(0, 212, 255, 0.22);
-  background: rgba(0, 212, 255, 0.07);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 20px 80px rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.32);
+  background: rgba(4, 10, 20, 0.9);
+  backdrop-filter: blur(24px);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
 }
 
 .project-card h4 {
+  color: #ffffff;
   font-size: 30px;
   margin-bottom: 8px;
 }
 
 .project-card p {
-  color: #00d4ff;
+  color: var(--accent);
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .project-card ul {
   padding-left: 18px;
-  color: #cccccc;
+  color: var(--text-muted);
   line-height: 1.7;
   display: grid;
   gap: 10px;
 }
 
+.project-card li {
+  color: var(--text-muted);
+}
+
 .project-card li::marker {
-  color: #00d4ff;
+  color: var(--accent);
+}
+.company-card {
+  position: relative;
+  padding: 34px;
+  border-radius: 30px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg-strong);
+  backdrop-filter: blur(22px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 768px) {
@@ -134,4 +165,44 @@
   .project-panel {
     margin-left: 0;
   }
+
+}
+.experience h2 {
+  font-size: clamp(44px, 7vw, 100px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  color: var(--text-main);
+}
+
+.company-card {
+  background: var(--card-bg-strong);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.company-card h3 {
+  color: var(--text-main);
+}
+
+.company-card p {
+  color: var(--text-muted);
+}
+
+.project-card {
+  background: rgba(3, 8, 18, 0.94);
+  border: 1px solid rgba(0, 212, 255, 0.32);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.project-card h4 {
+  color: var(--text-main);
+}
+
+.project-card p {
+  color: var(--accent);
+}
+
+.project-card li {
+  color: var(--text-muted);
 }

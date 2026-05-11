@@ -1,0 +1,25 @@
+.projects h2 {
+  font-size: clamp(48px, 8vw, 110px);
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.project-card {
+  padding: 34px;
+  border-radius: 28px;
+  background: var(--card-bg-strong);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.project-card h3,
+.project-card h4 {
+  color: var(--text-main);
+}
+
+.project-card p,
+.project-card li {
+  color: var(--text-muted);
+}

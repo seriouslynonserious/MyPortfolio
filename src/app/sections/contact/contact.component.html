@@ -1,1 +1,59 @@
-<p>contact works!</p>
+<section class="contact" id="contact">
+  <p class="section-label">Contact</p>
+  <h2>Send Me a Message</h2>
+
+  <div class="contact-stage">
+
+    <div class="bot-wrapper" [class.fly-to-earth]="botFlying">
+      <div class="speech-bubble">
+        {{ botMessage }}
+      </div>
+
+      <div class="bot">
+        <div class="bot-head">
+          <div class="bot-screen">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="bot-body">
+          <div class="tie"></div>
+        </div>
+
+        <div class="bot-arm left"></div>
+        <div class="bot-arm right"></div>
+        <div class="bot-leg left"></div>
+        <div class="bot-leg right"></div>
+      </div>
+    </div>
+
+    <form
+      class="contact-form"
+      (ngSubmit)="submitForm()"
+    >
+      <input
+        type="text"
+        placeholder="Your Name"
+        [(ngModel)]="form.name"
+        name="name"
+      />
+
+      <input
+        type="email"
+        placeholder="Your Email"
+        [(ngModel)]="form.email"
+        name="email"
+      />
+
+      <textarea
+        placeholder="Your Message"
+        [(ngModel)]="form.message"
+        name="message"
+      ></textarea>
+
+      <button type="submit">Give Message to Bot</button>
+    </form>
+
+  </div>
+</section>

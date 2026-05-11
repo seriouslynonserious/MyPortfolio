@@ -49,7 +49,7 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
       100
     );
 
-    this.camera.position.z = 3;
+    this.camera.position.z =4.2;
 
     this.renderer = new THREE.WebGLRenderer({
       canvas,
