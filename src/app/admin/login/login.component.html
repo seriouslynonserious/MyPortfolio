@@ -1,0 +1,81 @@
+<section class="admin-login">
+
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <div class="security-stage" *ngIf="!securityPassed">
+
+    <div class="funny-bot">
+      <div class="bot-head">
+        <div class="eyes">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="bot-body"></div>
+    </div>
+
+    <div class="question-card">
+      <p class="small-label">AI SECURITY CHECKPOINT</p>
+
+      <h1>Before You Enter...</h1>
+
+      <div class="speech-bubble">
+        {{ funnyMessage }}
+      </div>
+
+      <input
+        type="text"
+        [(ngModel)]="secretAnswer"
+        placeholder="Enter secret answer"
+      />
+
+      <button (click)="verifyAnswer()">
+        Convince The Bot
+      </button>
+    </div>
+
+  </div>
+
+  <div class="login-card" *ngIf="securityPassed">
+
+    <p class="admin-label">Portfolio Control Center</p>
+
+    <h1>Admin Login</h1>
+
+    <p class="subtitle">
+      Welcome back Shivam. The bot finally trusts you.
+    </p>
+
+    <div class="input-group">
+      <label>Email</label>
+
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Enter admin email"
+      />
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Enter password"
+      />
+    </div>
+
+    <button (click)="login()" [disabled]="loading">
+      {{ loading ? 'Checking...' : 'Enter Dashboard' }}
+    </button>
+
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+  </div>
+
+</section>

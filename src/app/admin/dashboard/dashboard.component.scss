@@ -1,0 +1,108 @@
+.dashboard {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: #05070d;
+}
+
+.dashboard-sidebar {
+  padding: 40px 24px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dashboard-sidebar h2 {
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+.dashboard-sidebar button {
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  text-align: left;
+}
+
+.logout {
+  margin-top: auto;
+  background: rgba(255,80,80,0.2) !important;
+}
+
+.dashboard-content {
+  padding: 50px;
+}
+
+.dashboard-content h1 {
+  font-size: 58px;
+  margin-bottom: 30px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: white;
+}
+
+.admin-form textarea {
+  min-height: 120px;
+}
+
+.admin-form button {
+  width: fit-content;
+  padding: 16px 28px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+  color: white;
+  font-weight: 700;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.admin-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.admin-card h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.admin-card p {
+  color: #00d4ff;
+  margin-bottom: 12px;
+}
+
+.admin-card span {
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+
+.delete-btn {
+  margin-top: 20px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255,80,80,0.18);
+  color: #ff8a8a;
+}

@@ -10,6 +10,13 @@ import { SkillsComponent } from './sections/skills/skills.component';
 import { ExperienceComponent } from './sections/experience/experience.component';
 import { ProjectsComponent } from './sections/projects/projects.component';
 import { ContactComponent } from './sections/contact/contact.component';
+import { LoginComponent } from './admin/login/login.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ManageSkillsComponent } from './admin/manage-skills/manage-skills.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,12 +27,18 @@ import { ContactComponent } from './sections/contact/contact.component';
     SkillsComponent,
     ExperienceComponent,
     ProjectsComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent,
+    DashboardComponent,
+    ManageSkillsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

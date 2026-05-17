@@ -1,10 +1,14 @@
-<app-webgl-background></app-webgl-background>
+<router-outlet></router-outlet>
 
-<main class="portfolio">
-  <app-hero></app-hero>
-  <app-about></app-about>
-  <app-skills></app-skills>
-  <app-experience></app-experience>
-  <app-projects></app-projects>
-  <app-contact></app-contact>
-</main>
+<div *ngIf="!isAdminRoute">
+  <app-webgl-background></app-webgl-background>
+
+  <main class="portfolio">
+    <app-hero></app-hero>
+    <app-about></app-about>
+    <app-skills></app-skills>
+    <app-experience></app-experience>
+    <app-projects></app-projects>
+    <app-contact></app-contact>
+  </main>
+</div>
