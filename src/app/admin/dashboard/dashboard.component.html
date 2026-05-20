@@ -1,14 +1,54 @@
 <section class="dashboard">
-  <div class="dashboard-sidebar">
-    <h2>Shivam OS</h2>
+  <div class="mobile-topbar">
 
-    <button (click)="activeTab='skills'">Skills</button>
-    <button (click)="activeTab='projects'">Projects</button>
-    <button (click)="activeTab='experience'">Experience</button>
-    <button (click)="activeTab='about'">About</button>
+  <h2>Shivam OS</h2>
 
-    <button class="logout" (click)="logout()">Logout</button>
-  </div>
+  <button class="menu-btn" (click)="menuOpen = !menuOpen">
+    ☰
+  </button>
+
+</div>
+
+<div
+  class="dashboard-sidebar"
+  [class.mobile-open]="menuOpen"
+>
+
+  <button class="close-menu" (click)="menuOpen = false">
+    ✕
+  </button>
+
+  <h2>Shivam OS</h2>
+
+  <button
+    (click)="activeTab='skills'; menuOpen=false"
+  >
+    Skills
+  </button>
+
+  <button
+    (click)="activeTab='projects'; menuOpen=false"
+  >
+    Projects
+  </button>
+
+  <button
+    (click)="activeTab='experience'; menuOpen=false"
+  >
+    Experience
+  </button>
+
+  <button
+    (click)="activeTab='about'; menuOpen=false"
+  >
+    About
+  </button>
+
+  <button class="logout" (click)="logout()">
+    Logout
+  </button>
+
+</div>
 
   <div class="dashboard-content">
 

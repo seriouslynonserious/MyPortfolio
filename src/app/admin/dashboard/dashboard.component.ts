@@ -23,6 +23,7 @@ editingSkillId: string | null = null;
 editingProjectId: string | null = null;
 editingCompanyId: string | null = null;
 editingCompanyProjectId: string | null = null;
+menuOpen = false;
 
 personalProject = {
   title: '',
