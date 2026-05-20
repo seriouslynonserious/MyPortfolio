@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { gsap } from 'gsap';
+declare let emailjs: any;
+
 
 @Component({
   selector: 'app-contact',
@@ -8,9 +10,11 @@ import { gsap } from 'gsap';
 })
 export class ContactComponent {
   botMessage = 'Hi! I am your message bot. Fill the form and I will deliver it to Shivam on Earth.';
-
+  
   formFolding = false;
   botFlying = false;
+  
+
 
   form = {
     name: '',
@@ -59,6 +63,33 @@ export class ContactComponent {
     }
 
     this.botMessage = 'Perfect! Folding your message and packing it inside me...';
+    emailjs.send(
+      'service_yj0dzmo',
+      'template_cn4jkfc',
+      {
+        from_name: this.form.name,
+        from_email: this.form.email,
+        message: this.form.message,
+        to_email: 'shivaay251202@gmail.com'
+      }
+    )
+      .then(() => {
+
+        this.botMessage = 'Message sent successfully 🚀';
+
+        this.form = {
+          name: '',
+          email: '',
+          message: ''
+        };
+
+      })
+      .catch((error: any) => {
+
+        console.error(error);
+
+        this.botMessage = 'Failed to send message.';
+      });
 
     setTimeout(() => {
       this.foldFormIntoBot();
@@ -169,4 +200,6 @@ export class ContactComponent {
     void bot.offsetWidth;
     bot.classList.add('shake');
   }
+
+
 }

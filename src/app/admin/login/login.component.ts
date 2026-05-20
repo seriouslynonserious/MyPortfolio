@@ -14,13 +14,14 @@ export class LoginComponent {
   password = '';
   errorMessage = '';
   loading = false;
+  passwordFocused = false;
 
   securityPassed = false;
 
   secretAnswer = '';
 
   funnyMessage =
-    'STOP RIGHT THERE HUMAN 👀\nOnly Shivam can enter.\n\nQuestion:\nWhat is Shivam’s favorite debugging line?';
+'WAITTTT 👀\nBefore entering Shivam OS...\n\nTell me:\nWhat does Shivam like the most?';
 
   constructor(
     private authService: AuthService,
@@ -30,7 +31,7 @@ export class LoginComponent {
   verifyAnswer(): void {
     const answer = this.secretAnswer.toLowerCase().trim();
 
-    if (answer === 'console.log') {
+    if (answer === 'Nothing' || answer === 'nothing' || answer === 'Nothing.' || answer === 'nothing.') {
       this.funnyMessage =
         'Identity confirmed 😂\nYou ARE Shivam.\nOpening admin portal...';
 

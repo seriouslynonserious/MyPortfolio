@@ -3,6 +3,7 @@
   <div class="orb orb-one"></div>
   <div class="orb orb-two"></div>
 
+  <!-- SECRET QUESTION PAGE -->
   <div class="security-stage" *ngIf="!securityPassed">
 
     <div class="funny-bot">
@@ -38,14 +39,40 @@
 
   </div>
 
+  <!-- PANDA LOGIN PAGE -->
   <div class="login-card" *ngIf="securityPassed">
+
+    <div
+      class="panda"
+      [class.typing]="email"
+      [class.hide-eyes]="passwordFocused"
+    >
+      <div class="panda-ear left"></div>
+      <div class="panda-ear right"></div>
+
+      <div class="panda-face">
+        <div class="panda-eye left-eye">
+          <div class="pupil"></div>
+        </div>
+
+        <div class="panda-eye right-eye">
+          <div class="pupil"></div>
+        </div>
+
+        <div class="panda-hand left-hand"></div>
+        <div class="panda-hand right-hand"></div>
+
+        <div class="panda-nose"></div>
+        <div class="panda-mouth"></div>
+      </div>
+    </div>
 
     <p class="admin-label">Portfolio Control Center</p>
 
     <h1>Admin Login</h1>
 
     <p class="subtitle">
-      Welcome back Shivam. The bot finally trusts you.
+      Welcome back Shivam. Panda security is watching you.
     </p>
 
     <div class="input-group">
@@ -65,6 +92,8 @@
         type="password"
         [(ngModel)]="password"
         placeholder="Enter password"
+        (focus)="passwordFocused = true"
+        (blur)="passwordFocused = false"
       />
     </div>
 
