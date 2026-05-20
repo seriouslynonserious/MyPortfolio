@@ -45,4 +45,17 @@ export class ExperienceService {
       .doc(projectId)
       .delete();
   }
+  updateCompany(companyId: string, company: any) {
+  return this.firestore
+    .collection('experience')
+    .doc(companyId)
+    .update(company);
+}
+
+updateProject(companyId: string, projectId: string, project: any) {
+  return this.firestore
+    .collection(`experience/${companyId}/projects`)
+    .doc(projectId)
+    .update(project);
+}
 }

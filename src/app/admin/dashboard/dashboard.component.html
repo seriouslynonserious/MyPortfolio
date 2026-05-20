@@ -1,5 +1,4 @@
 <section class="dashboard">
-
   <div class="dashboard-sidebar">
     <h2>Shivam OS</h2>
 
@@ -13,23 +12,19 @@
 
   <div class="dashboard-content">
 
-    <!-- SKILLS TAB -->
+    <!-- SKILLS -->
     <div *ngIf="activeTab === 'skills'">
-      <h1>Add Skills</h1>
+      <h1>Manage Skills</h1>
 
       <div class="admin-form">
-        <input
-          type="text"
-          placeholder="Skill Category Title"
-          [(ngModel)]="skill.title"
-        />
+        <input type="text" placeholder="Skill Category Title" [(ngModel)]="skill.title" />
+        <textarea placeholder="Skills list" [(ngModel)]="skill.description"></textarea>
 
-        <textarea
-          placeholder="Skills list"
-          [(ngModel)]="skill.description"
-        ></textarea>
-
-        <button (click)="addSkill()">Add Skill</button>
+        <div class="button-row">
+          <button *ngIf="!editingSkillId" (click)="addSkill()">Add Skill</button>
+          <button *ngIf="editingSkillId" (click)="updateSkill()">Save Skill</button>
+          <button *ngIf="editingSkillId" class="delete-btn" (click)="cancelSkillEdit()">Cancel</button>
+        </div>
       </div>
 
       <div class="admin-grid">
@@ -37,45 +32,61 @@
           <h3>{{ item.title }}</h3>
           <span>{{ item.description }}</span>
 
-          <button class="delete-btn" (click)="deleteSkill(item.id)">
-            Delete
-          </button>
+          <div class="card-actions">
+            <button (click)="editSkill(item)">Edit</button>
+            <button class="delete-btn" (click)="deleteSkill(item.id)">Delete</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- EXPERIENCE TAB -->
+    <!-- PROJECTS -->
+    <div *ngIf="activeTab === 'projects'">
+      <h1>Manage Personal Projects</h1>
+
+      <div class="admin-form">
+        <input type="text" placeholder="Project Title" [(ngModel)]="personalProject.title" />
+        <input type="text" placeholder="Skills / Tech Stack" [(ngModel)]="personalProject.skills" />
+        <textarea placeholder="Project Description" [(ngModel)]="personalProject.description"></textarea>
+
+        <div class="button-row">
+          <button *ngIf="!editingProjectId" (click)="addPersonalProject()">Add Project</button>
+          <button *ngIf="editingProjectId" (click)="updatePersonalProject()">Save Project</button>
+          <button *ngIf="editingProjectId" class="delete-btn" (click)="cancelProjectEdit()">Cancel</button>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card" *ngFor="let project of projects">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.skills }}</p>
+          <span>{{ project.description }}</span>
+
+          <div class="card-actions">
+            <button (click)="editPersonalProject(project)">Edit</button>
+            <button class="delete-btn" (click)="deletePersonalProject(project.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
     <div *ngIf="activeTab === 'experience'">
       <h1>Manage Experience</h1>
 
       <h2>Add Company</h2>
 
       <div class="admin-form">
-        <input
-          type="text"
-          placeholder="Company Name"
-          [(ngModel)]="company.companyName"
-        />
+        <input type="text" placeholder="Company Name" [(ngModel)]="company.companyName" />
+        <input type="text" placeholder="Role" [(ngModel)]="company.role" />
+        <input type="text" placeholder="Location" [(ngModel)]="company.location" />
+        <input type="text" placeholder="Duration" [(ngModel)]="company.duration" />
 
-        <input
-          type="text"
-          placeholder="Role"
-          [(ngModel)]="company.role"
-        />
-
-        <input
-          type="text"
-          placeholder="Location"
-          [(ngModel)]="company.location"
-        />
-
-        <input
-          type="text"
-          placeholder="Duration"
-          [(ngModel)]="company.duration"
-        />
-
-        <button (click)="addCompany()">Add Company</button>
+        <div class="button-row">
+          <button *ngIf="!editingCompanyId" (click)="addCompany()">Add Company</button>
+          <button *ngIf="editingCompanyId" (click)="updateCompany()">Save Company</button>
+          <button *ngIf="editingCompanyId" class="delete-btn" (click)="cancelCompanyEdit()">Cancel</button>
+        </div>
       </div>
 
       <h2>Companies</h2>
@@ -86,13 +97,11 @@
           <p>{{ company.role }}</p>
           <span>{{ company.duration }} · {{ company.location }}</span>
 
-          <button (click)="selectCompany(company)">
-            Manage Projects
-          </button>
-
-          <button class="delete-btn" (click)="deleteCompany(company.id)">
-            Delete Company
-          </button>
+          <div class="card-actions three-actions">
+            <button (click)="editCompany(company)">Edit</button>
+            <button (click)="selectCompany(company)">Projects</button>
+            <button class="delete-btn" (click)="deleteCompany(company.id)">Delete</button>
+          </div>
         </div>
       </div>
 
@@ -100,24 +109,15 @@
         <h2>Projects inside {{ selectedCompany.companyName }}</h2>
 
         <div class="admin-form">
-          <input
-            type="text"
-            placeholder="Project Title"
-            [(ngModel)]="project.title"
-          />
+          <input type="text" placeholder="Project Title" [(ngModel)]="project.title" />
+          <input type="text" placeholder="Project Subtitle" [(ngModel)]="project.subtitle" />
+          <textarea placeholder="Project Description" [(ngModel)]="project.description"></textarea>
 
-          <input
-            type="text"
-            placeholder="Project Subtitle"
-            [(ngModel)]="project.subtitle"
-          />
-
-          <textarea
-            placeholder="Project Description"
-            [(ngModel)]="project.description"
-          ></textarea>
-
-          <button (click)="addProject()">Add Project</button>
+          <div class="button-row">
+            <button *ngIf="!editingCompanyProjectId" (click)="addProject()">Add Project</button>
+            <button *ngIf="editingCompanyProjectId" (click)="updateCompanyProject()">Save Project</button>
+            <button *ngIf="editingCompanyProjectId" class="delete-btn" (click)="cancelCompanyProjectEdit()">Cancel</button>
+          </div>
         </div>
 
         <div class="admin-grid">
@@ -126,26 +126,30 @@
             <p>{{ project.subtitle }}</p>
             <span>{{ project.description }}</span>
 
-            <button class="delete-btn" (click)="deleteProject(project.id)">
-              Delete Project
-            </button>
+            <div class="card-actions">
+              <button (click)="editCompanyProject(project)">Edit</button>
+              <button class="delete-btn" (click)="deleteProject(project.id)">Delete</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECTS TAB -->
-    <div *ngIf="activeTab === 'projects'">
-      <h1>Manage Projects</h1>
-      <p>Coming next.</p>
-    </div>
-
-    <!-- ABOUT TAB -->
+    <!-- ABOUT -->
     <div *ngIf="activeTab === 'about'">
-      <h1>Manage About</h1>
-      <p>Coming next.</p>
+      <h1>Manage Profile Content</h1>
+
+      <div class="admin-form">
+        <input type="text" placeholder="Hero subtitle below Shivam Mishra" [(ngModel)]="profile.heroSubtitle" />
+        <textarea placeholder="Short crisp hero line" [(ngModel)]="profile.heroLine"></textarea>
+        <input type="text" placeholder="About heading" [(ngModel)]="profile.aboutHeading" />
+        <textarea placeholder="About me text" [(ngModel)]="profile.aboutText"></textarea>
+
+        <div class="button-row">
+          <button (click)="saveProfile()">Save Profile</button>
+        </div>
+      </div>
     </div>
 
   </div>
-
 </section>

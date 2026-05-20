@@ -1,5 +1,5 @@
-
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ProjectsService } from '../../services/projects.service';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -10,19 +10,31 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements AfterViewInit {
+export class ProjectsComponent implements OnInit, AfterViewInit {
+  projects: any[] = [];
 
-    ngAfterViewInit(): void {
-    gsap.from('.project-card', {
-      y: 80,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: '.projects',
-        start: 'top 70%'
-      }
+  constructor(private projectsService: ProjectsService) {}
+
+  ngOnInit(): void {
+    this.projectsService.getProjects().subscribe((data: any) => {
+      this.projects = data;
     });
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      gsap.from('.personal-project-card', {
+        y: 80,
+        opacity: 0,
+        rotateX: 12,
+        duration: 1,
+        stagger: 0.18,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.projects',
+          start: 'top 70%'
+        }
+      });
+    }, 500);
+  }
 }

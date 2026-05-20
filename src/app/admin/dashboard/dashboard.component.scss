@@ -2,15 +2,19 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 280px 1fr;
-  background: #05070d;
+  background:
+    radial-gradient(circle at top right, rgba(0, 212, 255, 0.12), transparent 35%),
+    #05070d;
+  color: white;
 }
 
 .dashboard-sidebar {
   padding: 40px 24px;
-  border-right: 1px solid rgba(255,255,255,0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: rgba(3, 8, 18, 0.9);
 }
 
 .dashboard-sidebar h2 {
@@ -21,53 +25,79 @@
 .dashboard-sidebar button {
   padding: 16px;
   border-radius: 16px;
-  border: none;
-  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
   color: white;
   text-align: left;
+  font-weight: 700;
 }
 
 .logout {
   margin-top: auto;
-  background: rgba(255,80,80,0.2) !important;
+  background: rgba(255, 80, 80, 0.18) !important;
+  color: #ff9b9b !important;
 }
 
 .dashboard-content {
   padding: 50px;
+  overflow-x: hidden;
 }
 
 .dashboard-content h1 {
-  font-size: 58px;
+  font-size: clamp(42px, 6vw, 72px);
   margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.dashboard-content h2 {
+  font-size: 28px;
+  margin: 40px 0 20px;
+  color: #00d4ff;
 }
 
 .admin-form {
   display: grid;
   gap: 16px;
   margin-bottom: 40px;
+  max-width: 900px;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(3, 8, 18, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .admin-form input,
 .admin-form textarea {
   padding: 18px;
   border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
   color: white;
+  outline: none;
+  font-size: 15px;
 }
 
 .admin-form textarea {
   min-height: 120px;
+  resize: vertical;
 }
 
-.admin-form button {
-  width: fit-content;
-  padding: 16px 28px;
-  border-radius: 999px;
-  border: none;
-  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
-  color: white;
-  font-weight: 700;
+.admin-form input:focus,
+.admin-form textarea:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.16);
+}
+
+.button-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.button-row button {
+  flex: 1;
+  min-width: 150px;
 }
 
 .admin-grid {
@@ -77,10 +107,13 @@
 }
 
 .admin-card {
+  min-height: 230px;
   padding: 24px;
   border-radius: 24px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(3, 8, 18, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-card h3 {
@@ -91,18 +124,78 @@
 .admin-card p {
   color: #00d4ff;
   margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .admin-card span {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.6;
 }
 
-.delete-btn {
-  margin-top: 20px;
-  padding: 10px 18px;
-  border-radius: 999px;
+.card-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.card-actions button {
+  flex: 1;
+}
+
+.three-actions {
+  flex-wrap: wrap;
+}
+
+.three-actions button {
+  min-width: 90px;
+}
+
+.admin-form button,
+.card-actions button {
+  padding: 14px 20px;
+  border-radius: 14px;
   border: none;
-  background: rgba(255,80,80,0.18);
-  color: #ff8a8a;
+  color: white;
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+  font-weight: 800;
+  transition: 0.3s ease;
+}
+
+.admin-form button:hover,
+.card-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+}
+
+.delete-btn {
+  background: rgba(255, 80, 80, 0.16) !important;
+  color: #ff8a8a !important;
+}
+
+.project-manager {
+  margin-top: 45px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .dashboard-content {
+    padding: 28px 18px;
+  }
+
+  .button-row,
+  .card-actions {
+    flex-direction: column;
+  }
 }

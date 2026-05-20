@@ -1,20 +1,33 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ProfileService } from '../../services/profile.service';
 
-gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss']
 })
-export class HeroComponent implements AfterViewInit {
- ngAfterViewInit(): void {
-    gsap.from('.hero .eyebrow', {
-      y: 30,
-      opacity: 0,
-      duration: 0.8
+export class HeroComponent implements OnInit, AfterViewInit {
+  profile: any = {
+    heroSubtitle: 'Angular • Spring Boot • Interactive Web Experiences',
+    heroLine: 'I build scalable web platforms, high-performance frontends, and modern full-stack applications.'
+  };
+
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe((data: any) => {
+      if (data) {
+        this.profile = {
+          ...this.profile,
+          ...data
+        };
+      }
     });
+  }
+
+  ngAfterViewInit(): void {
+    gsap.from('.hero .eyebrow', { y: 30, opacity: 0, duration: 0.8 });
 
     gsap.from('.hero h1', {
       y: 100,
@@ -32,19 +45,5 @@ export class HeroComponent implements AfterViewInit {
       stagger: 0.15,
       ease: 'power3.out'
     });
-    const cursor = document.querySelector('.custom-cursor') as HTMLElement;
-
-window.addEventListener('mousemove', (event: MouseEvent) => {
-  if (!cursor) return;
-
-  gsap.to(cursor, {
-    x: event.clientX,
-    y: event.clientY,
-    duration: 0.15,
-    ease: 'power2.out'
-  });
-});
-
   }
-
 }

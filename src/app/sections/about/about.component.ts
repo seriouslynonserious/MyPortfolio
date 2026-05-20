@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ProfileService } from '../../services/profile.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,9 +10,26 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements AfterViewInit {
+export class AboutComponent implements OnInit, AfterViewInit {
+  profile: any = {
+    aboutHeading: 'About Me',
+    aboutText: 'I’m a Full Stack Engineer focused on building scalable web platforms, high-performance frontends, and modern digital experiences.'
+  };
 
-   ngAfterViewInit(): void {
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit(): void {
+    this.profileService.getProfile().subscribe((data: any) => {
+      if (data) {
+        this.profile = {
+          ...this.profile,
+          ...data
+        };
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
     gsap.from('.about h2, .about p', {
       y: 80,
       opacity: 0,
@@ -24,6 +42,4 @@ export class AboutComponent implements AfterViewInit {
       }
     });
   }
-  }
-
-
+}

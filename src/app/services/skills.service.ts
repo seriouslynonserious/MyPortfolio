@@ -28,4 +28,10 @@ export class SkillsService {
       .doc(id)
       .delete();
   }
+  updateSkill(id: string, skill: any) {
+  return this.firestore
+    .collection('skills')
+    .doc(id)
+    .update(skill);
+}
 }
