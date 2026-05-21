@@ -3,6 +3,14 @@
   <div class="orb orb-one"></div>
   <div class="orb orb-two"></div>
 
+  <button
+    class="mobile-back"
+    routerLink="/"
+    *ngIf="!securityPassed"
+  >
+    ←
+  </button>
+
   <!-- SECRET QUESTION PAGE -->
   <div class="security-stage" *ngIf="!securityPassed">
 
@@ -18,6 +26,10 @@
     </div>
 
     <div class="question-card">
+      <button class="desktop-back" routerLink="/">
+        ← Back to Portfolio
+      </button>
+
       <p class="small-label">AI SECURITY CHECKPOINT</p>
 
       <h1>Before You Enter...</h1>
@@ -39,67 +51,32 @@
 
   </div>
 
-  <!-- PANDA LOGIN PAGE -->
+  <!-- EMAIL LINK LOGIN PAGE -->
   <div class="login-card" *ngIf="securityPassed">
-
-    <div
-      class="panda"
-      [class.typing]="email"
-      [class.hide-eyes]="passwordFocused"
-    >
-      <div class="panda-ear left"></div>
-      <div class="panda-ear right"></div>
-
-      <div class="panda-face">
-        <div class="panda-eye left-eye">
-          <div class="pupil"></div>
-        </div>
-
-        <div class="panda-eye right-eye">
-          <div class="pupil"></div>
-        </div>
-
-        <div class="panda-hand left-hand"></div>
-        <div class="panda-hand right-hand"></div>
-
-        <div class="panda-nose"></div>
-        <div class="panda-mouth"></div>
-      </div>
-    </div>
 
     <p class="admin-label">Portfolio Control Center</p>
 
-    <h1>Admin Login</h1>
+    <h1>Secure Login</h1>
 
     <p class="subtitle">
-      Welcome back Shivam. Panda security is watching you.
+      No password needed. Send a secure login link to your Gmail.
     </p>
 
-    <div class="input-group">
-      <label>Email</label>
-
-      <input
-        type="email"
-        [(ngModel)]="email"
-        placeholder="Enter admin email"
-      />
+    <div class="secure-email-box">
+      s*************@gmail.com
     </div>
 
-    <div class="input-group">
-      <label>Password</label>
+   <button
+  *ngIf="!loginLinkSent"
+  (click)="sendLoginLink()"
+  [disabled]="loading"
+>
+  {{ loading ? 'Sending Link...' : 'Send Login Link to Gmail' }}
+</button>
 
-      <input
-        type="password"
-        [(ngModel)]="password"
-        placeholder="Enter password"
-        (focus)="passwordFocused = true"
-        (blur)="passwordFocused = false"
-      />
-    </div>
-
-    <button (click)="login()" [disabled]="loading">
-      {{ loading ? 'Checking...' : 'Enter Dashboard' }}
-    </button>
+<div class="cooldown-box" *ngIf="loginLinkSent">
+  {{ cooldownMessage }}
+</div>
 
     <p class="error" *ngIf="errorMessage">
       {{ errorMessage }}
