@@ -38,15 +38,20 @@
     Experience
   </button>
 
+
   <button
     (click)="activeTab='about'; menuOpen=false"
   >
     About
   </button>
+   <button (click)="activeTab='resume'; menuOpen=false">
+  Resume
+</button>
 
   <button class="logout" (click)="logout()">
     Logout
   </button>
+ 
 
 </div>
 
@@ -190,6 +195,52 @@
         </div>
       </div>
     </div>
+
+    <!-- RESUME -->
+<div *ngIf="activeTab === 'resume'">
+  <h1>Manage Resume</h1>
+
+  <div class="admin-form">
+    <input
+      type="file"
+      accept="application/pdf"
+      (change)="onResumeSelected($event)"
+    />
+
+    <div class="button-row">
+      <button
+        (click)="uploadResume()"
+        [disabled]="resumeUploading"
+      >
+        {{ resumeUploading ? 'Uploading...' : 'Upload / Update Resume' }}
+      </button>
+
+      <button
+        *ngIf="resumeUrl"
+        class="delete-btn"
+        (click)="deleteResume()"
+      >
+        Delete Resume
+      </button>
+    </div>
+  </div>
+
+  <div class="admin-card" *ngIf="resumeUrl">
+    <h3>Current Resume</h3>
+
+    <p *ngIf="resumeFileName">
+      {{ resumeFileName }}
+    </p>
+
+    <a
+      [href]="resumeUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View Resume
+    </a>
+  </div>
+</div>
 
   </div>
 </section>

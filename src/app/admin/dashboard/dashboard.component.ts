@@ -5,6 +5,9 @@ import { SkillsService } from '../../services/skills.service';
 import { ExperienceService } from '../../services/experience.service';
 import { ProjectsService } from '../../services/projects.service';
 import { ProfileService } from '../../services/profile.service';
+import {ResumeService} from "../../services/resume.service";
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,6 +27,10 @@ editingProjectId: string | null = null;
 editingCompanyId: string | null = null;
 editingCompanyProjectId: string | null = null;
 menuOpen = false;
+resumeFile: File | null = null;
+resumeUrl: string = '';
+resumeFileName: string = '';
+resumeUploading = false;
 
 personalProject = {
   title: '',
@@ -49,7 +56,8 @@ profile = {
     private skillsService: SkillsService,
     private experienceService: ExperienceService,
     private projectsService: ProjectsService,
-   private profileService: ProfileService
+   private profileService: ProfileService,
+   private resumeService: ResumeService
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +65,7 @@ profile = {
     this.loadCompanies();
     this.loadProjects();
     this.loadProfile();
+    this.loadResume();
   }
 
   loadSkills(): void {
@@ -328,5 +337,71 @@ loadProfile(): void {
 
 saveProfile(): void {
   this.profileService.updateProfile(this.profile);
+}
+
+
+loadResume(): void {
+  this.resumeService.getResume().subscribe((data: any) => {
+    if (data) {
+      this.resumeUrl = data.url || '';
+      this.resumeFileName = data.fileName || '';
+    } else {
+      this.resumeUrl = '';
+      this.resumeFileName = '';
+    }
+  });
+}
+
+onResumeSelected(event: any): void {
+  const file = event.target.files[0];
+
+  if (!file) {
+    return;
+  }
+
+  if (file.type !== 'application/pdf') {
+    alert('Please upload only PDF file');
+    return;
+  }
+
+  this.resumeFile = file;
+}
+
+uploadResume(): void {
+  if (!this.resumeFile) {
+    alert('Please select a resume PDF first');
+    return;
+  }
+
+  this.resumeUploading = true;
+
+  this.resumeService.uploadResume(this.resumeFile)
+    .then(() => {
+      this.resumeUploading = false;
+      this.resumeFile = null;
+      alert('Resume uploaded successfully');
+    })
+    .catch(error => {
+      this.resumeUploading = false;
+      console.error(error);
+      alert('Resume upload failed');
+    });
+}
+
+deleteResume(): void {
+  if (!confirm('Are you sure you want to delete resume?')) {
+    return;
+  }
+
+  this.resumeService.deleteResume()
+    .then(() => {
+      this.resumeUrl = '';
+      this.resumeFileName = '';
+      alert('Resume deleted successfully');
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Resume delete failed');
+    });
 }
 }

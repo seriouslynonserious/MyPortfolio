@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { gsap } from 'gsap';
 import { ProfileService } from '../../services/profile.service';
-
+import { ResumeService } from '../../services/resume.service';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
@@ -12,8 +12,9 @@ export class HeroComponent implements OnInit, AfterViewInit {
     heroSubtitle: 'Angular • Spring Boot • Interactive Web Experiences',
     heroLine: 'I build scalable web platforms, high-performance frontends, and modern full-stack applications.'
   };
+  resumeUrl: string = '';
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService,private resumeService: ResumeService) {}
 
   ngOnInit(): void {
     this.profileService.getProfile().subscribe((data: any) => {
@@ -24,6 +25,9 @@ export class HeroComponent implements OnInit, AfterViewInit {
         };
       }
     });
+    this.resumeService.getResume().subscribe((data: any) => {
+  this.resumeUrl = data && data.url ? data.url : '';
+});
   }
 
   ngAfterViewInit(): void {

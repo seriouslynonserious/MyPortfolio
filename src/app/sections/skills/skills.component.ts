@@ -15,11 +15,17 @@ export class SkillsComponent implements OnInit, AfterViewInit {
 
   constructor(private skillsService: SkillsService) {}
 
-  ngOnInit(): void {
-    this.skillsService.getSkills().subscribe((data: any) => {
+ngOnInit() {
+  this.skillsService.getSkills().subscribe(
+    data => {
+      console.log('Firebase skills data:', data);
       this.skills = data;
-    });
-  }
+    },
+    error => {
+      console.error('Firebase error:', error);
+    }
+  );
+} 
 
   ngAfterViewInit(): void {
     setTimeout(() => {
