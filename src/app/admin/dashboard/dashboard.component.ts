@@ -27,10 +27,8 @@ editingProjectId: string | null = null;
 editingCompanyId: string | null = null;
 editingCompanyProjectId: string | null = null;
 menuOpen = false;
-resumeFile: File | null = null;
 resumeUrl: string = '';
-resumeFileName: string = '';
-resumeUploading = false;
+
 
 personalProject = {
   title: '',
@@ -342,66 +340,29 @@ saveProfile(): void {
 
 loadResume(): void {
   this.resumeService.getResume().subscribe((data: any) => {
-    if (data) {
-      this.resumeUrl = data.url || '';
-      this.resumeFileName = data.fileName || '';
-    } else {
-      this.resumeUrl = '';
-      this.resumeFileName = '';
-    }
+    this.resumeUrl = data && data.url ? data.url : '';
   });
 }
 
-onResumeSelected(event: any): void {
-  const file = event.target.files[0];
-
-  if (!file) {
+saveResumeUrl(): void {
+  if (!this.resumeUrl) {
+    alert('Please enter resume URL');
     return;
   }
 
-  if (file.type !== 'application/pdf') {
-    alert('Please upload only PDF file');
-    return;
-  }
-
-  this.resumeFile = file;
+  this.resumeService.saveResumeUrl(this.resumeUrl).then(() => {
+    alert('Resume link saved');
+  });
 }
 
-uploadResume(): void {
-  if (!this.resumeFile) {
-    alert('Please select a resume PDF first');
+deleteResumeUrl(): void {
+  if (!confirm('Delete resume link?')) {
     return;
   }
 
-  this.resumeUploading = true;
-
-  this.resumeService.uploadResume(this.resumeFile)
-    .then(() => {
-      this.resumeUploading = false;
-      this.resumeFile = null;
-      alert('Resume uploaded successfully');
-    })
-    .catch(error => {
-      this.resumeUploading = false;
-      console.error(error);
-      alert('Resume upload failed');
-    });
-}
-
-deleteResume(): void {
-  if (!confirm('Are you sure you want to delete resume?')) {
-    return;
-  }
-
-  this.resumeService.deleteResume()
-    .then(() => {
-      this.resumeUrl = '';
-      this.resumeFileName = '';
-      alert('Resume deleted successfully');
-    })
-    .catch(error => {
-      console.error(error);
-      alert('Resume delete failed');
-    });
+  this.resumeService.deleteResumeUrl().then(() => {
+    this.resumeUrl = '';
+    alert('Resume link deleted');
+  });
 }
 }

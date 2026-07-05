@@ -197,40 +197,35 @@
     </div>
 
     <!-- RESUME -->
+<!-- RESUME -->
+<!-- RESUME -->
 <div *ngIf="activeTab === 'resume'">
   <h1>Manage Resume</h1>
 
   <div class="admin-form">
     <input
-      type="file"
-      accept="application/pdf"
-      (change)="onResumeSelected($event)"
+      type="text"
+      placeholder="Resume PDF URL"
+      [(ngModel)]="resumeUrl"
     />
 
     <div class="button-row">
-      <button
-        (click)="uploadResume()"
-        [disabled]="resumeUploading"
-      >
-        {{ resumeUploading ? 'Uploading...' : 'Upload / Update Resume' }}
+      <button (click)="saveResumeUrl()">
+        Save Resume Link
       </button>
 
       <button
         *ngIf="resumeUrl"
         class="delete-btn"
-        (click)="deleteResume()"
+        (click)="deleteResumeUrl()"
       >
-        Delete Resume
+        Delete Resume Link
       </button>
     </div>
   </div>
 
   <div class="admin-card" *ngIf="resumeUrl">
     <h3>Current Resume</h3>
-
-    <p *ngIf="resumeFileName">
-      {{ resumeFileName }}
-    </p>
 
     <a
       [href]="resumeUrl"
