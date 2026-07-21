@@ -25,6 +25,8 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
   private particles!: THREE.Points;
   private isMouseMoving = false;
   private mouseStopTimer: any;
+ private shootingStars: THREE.Group[] = [];
+private frameCount = 0;
 
   private mouseX = 0;
   private mouseY = 0;
@@ -98,6 +100,7 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
     blueLight.position.set(-3, 1, 4);
     this.scene.add(blueLight);
     this.createParticles();
+    this.createShootingStars();
   }
 
   animate = (): void => {
@@ -122,6 +125,26 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
     if (this.particles) {
       this.particles.rotation.y += 0.0008;
     }
+     this.frameCount++;
+
+this.shootingStars.forEach((star: any) => {
+  if (star.userData.delay > 0) {
+    star.userData.delay--;
+    star.visible = false;
+    return;
+  }
+
+  star.visible = true;
+
+  star.position.x -= star.userData.speed;
+  star.position.y -= star.userData.speed * 0.55;
+
+  if (star.position.x < -5 || star.position.y < -3) {
+    star.position.x = 4 + Math.random() * 4;
+    star.position.y = 2.5 - Math.random() * 4;
+    star.userData.delay = 120 + Math.random() * 160;
+  }
+});
 
     this.renderer.render(this.scene, this.camera);
   };
@@ -154,6 +177,60 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
 
     this.renderer.dispose();
   }
+ createShootingStars(): void {
+  for (let i = 0; i < 4; i++) {
+    const group = new THREE.Group();
+
+    const headGeometry = new THREE.SphereGeometry(0.045, 16, 16);
+
+    const headMaterial = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 1
+    });
+
+    const head = new THREE.Mesh(headGeometry, headMaterial);
+    group.add(head);
+
+    const trailGeometry = new THREE.CylinderGeometry(
+      0.012,
+      0.001,
+      1.4,
+      12
+    );
+
+    const trailMaterial = new THREE.MeshBasicMaterial({
+      color: 0x00d4ff,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    const trail = new THREE.Mesh(trailGeometry, trailMaterial);
+
+    trail.rotation.z = Math.PI / 2;
+    trail.position.x = 0.7;
+
+    group.add(trail);
+
+    group.position.set(
+      4 + Math.random() * 3,
+      2.5 - Math.random() * 4,
+      1
+    );
+
+    group.rotation.z = -0.55;
+
+    group.userData = {
+      speed: 0.055 + Math.random() * 0.035,
+      delay: i * 90
+    };
+
+    this.shootingStars.push(group);
+    this.scene.add(group);
+  }
+}
 
   createParticles(): void {
     const particleCount = 900;

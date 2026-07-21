@@ -13,12 +13,14 @@
   --accent-soft: rgba(0, 212, 255, 0.14);
 }
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* PAGE */
 html {
   scroll-behavior: smooth;
 }
@@ -31,6 +33,7 @@ body {
   cursor: url("assets/cursor/lightsaber.cur") 4 4, auto;
 }
 
+/* DARK READABILITY OVERLAY */
 body::before {
   content: '';
   position: fixed;
@@ -46,24 +49,27 @@ body::before {
   z-index: 1;
 }
 
+/* CUSTOM CURSOR */
 a,
 button,
 .actions a {
-  cursor: url("assets/cursor/lightsaber.cur") 4 4 , pointer;
+  cursor: url("assets/cursor/lightsaber.cur") 4 4, pointer;
 }
 
+/* MAIN SECTIONS */
 section {
   min-height: 100vh;
   padding: 100px 8%;
   position: relative;
-  z-index: 2;
+  z-index: 5;
 }
 
 .portfolio {
   position: relative;
-  z-index: 2;
+  z-index: 5;
 }
 
+/* COMMON SECTION LABEL */
 .section-label {
   color: var(--accent);
   letter-spacing: 4px;
@@ -72,10 +78,164 @@ section {
   margin-bottom: 20px;
 }
 
+/* COMMON GLASS CARD */
 .glass-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   backdrop-filter: blur(22px);
   border-radius: 28px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* WEBGL BACKGROUND LAYER */
+app-webgl-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* SHOOTING STARS */
+.shooting-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.star {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 1;
+  box-shadow:
+    0 0 10px #ffffff,
+    0 0 22px #00d4ff,
+    0 0 45px rgba(0, 212, 255, 0.9);
+  animation: realShootingStar 5.5s linear infinite;
+}
+
+.star::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  width: 320px;
+  height: 3px;
+  transform: translateY(-50%);
+  transform-origin: right center;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 212, 255, 0.08),
+    rgba(0, 212, 255, 0.45),
+    rgba(255, 255, 255, 0.95)
+  );
+  border-radius: 999px;
+  box-shadow:
+    0 0 14px rgba(0, 212, 255, 0.9),
+    0 0 34px rgba(0, 212, 255, 0.55);
+}
+
+.star:nth-child(1) {
+  top: 8%;
+  left: 100%;
+  animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+  top: 20%;
+  left: 110%;
+  animation-delay: 1.3s;
+}
+
+.star:nth-child(3) {
+  top: 36%;
+  left: 105%;
+  animation-delay: 2.7s;
+}
+
+.star:nth-child(4) {
+  top: 52%;
+  left: 115%;
+  animation-delay: 4s;
+}
+
+.star:nth-child(5) {
+  top: 70%;
+  left: 108%;
+  animation-delay: 5.2s;
+}
+
+@keyframes realShootingStar {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-32deg) scale(0.7);
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  42% {
+    opacity: 0;
+    transform: translate(-900px, 560px) rotate(-32deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-900px, 560px) rotate(-32deg) scale(1);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  section {
+    padding: 80px 6%;
+  }
+
+  .star::after {
+    width: 220px;
+  }
+
+  @keyframes realShootingStar {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) rotate(-32deg) scale(0.7);
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    20% {
+      opacity: 1;
+    }
+
+    42% {
+      opacity: 0;
+      transform: translate(-520px, 360px) rotate(-32deg) scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-520px, 360px) rotate(-32deg) scale(1);
+    }
+  }
+}
+.test-star {
+  position: fixed !important;
+  top: 100px !important;
+  left: 100px !important;
+  width: 100px !important;
+  height: 100px !important;
+  background: red !important;
+  z-index: 999999999 !important;
 }
