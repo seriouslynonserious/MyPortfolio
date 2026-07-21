@@ -10,20 +10,26 @@
   </p>
 
   <div class="actions">
-    <a href="https://github.com/seriouslynonserious" target="_blank" rel="noopener noreferrer">
-      GitHub
-    </a>
+  <a href="https://github.com/seriouslynonserious" target="_blank" rel="noopener noreferrer">
+    GitHub
+  </a>
 
-    <a href="https://linkedin.com/in/shivam-mishra-sm" target="_blank" rel="noopener noreferrer">
-      LinkedIn
-    </a>
-    <a routerLink="/admin/login" class="admin-link">Admin</a>
-  </div>
+  <a href="https://linkedin.com/in/shivam-mishra-sm" target="_blank" rel="noopener noreferrer">
+    LinkedIn
+  </a>
 
-  <div class="scroll-indicator">
-    <span>SCROLL</span>
-    <div class="line"></div>
-  </div>
+  <a
+    *ngIf="resumeUrl"
+    [href]="resumeUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Resume
+  </a>
+
+  <a routerLink="/admin/login" class="admin-link">Admin</a>
+</div>
+
 
 
 

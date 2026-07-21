@@ -5,6 +5,9 @@ import { SkillsService } from '../../services/skills.service';
 import { ExperienceService } from '../../services/experience.service';
 import { ProjectsService } from '../../services/projects.service';
 import { ProfileService } from '../../services/profile.service';
+import {ResumeService} from "../../services/resume.service";
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -24,6 +27,8 @@ editingProjectId: string | null = null;
 editingCompanyId: string | null = null;
 editingCompanyProjectId: string | null = null;
 menuOpen = false;
+resumeUrl: string = '';
+
 
 personalProject = {
   title: '',
@@ -49,7 +54,8 @@ profile = {
     private skillsService: SkillsService,
     private experienceService: ExperienceService,
     private projectsService: ProjectsService,
-   private profileService: ProfileService
+   private profileService: ProfileService,
+   private resumeService: ResumeService
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +63,7 @@ profile = {
     this.loadCompanies();
     this.loadProjects();
     this.loadProfile();
+    this.loadResume();
   }
 
   loadSkills(): void {
@@ -328,5 +335,34 @@ loadProfile(): void {
 
 saveProfile(): void {
   this.profileService.updateProfile(this.profile);
+}
+
+
+loadResume(): void {
+  this.resumeService.getResume().subscribe((data: any) => {
+    this.resumeUrl = data && data.url ? data.url : '';
+  });
+}
+
+saveResumeUrl(): void {
+  if (!this.resumeUrl) {
+    alert('Please enter resume URL');
+    return;
+  }
+
+  this.resumeService.saveResumeUrl(this.resumeUrl).then(() => {
+    alert('Resume link saved');
+  });
+}
+
+deleteResumeUrl(): void {
+  if (!confirm('Delete resume link?')) {
+    return;
+  }
+
+  this.resumeService.deleteResumeUrl().then(() => {
+    this.resumeUrl = '';
+    alert('Resume link deleted');
+  });
 }
 }
