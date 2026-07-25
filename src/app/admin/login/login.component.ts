@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { environment } from '../../../environments/environment';
 
@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
       handleCodeInApp: true
     };
 
-    this.afAuth.sendSignInLinkToEmail(
+    this.afAuth.auth.sendSignInLinkToEmail(
       environment.adminEmail,
       actionCodeSettings
     )

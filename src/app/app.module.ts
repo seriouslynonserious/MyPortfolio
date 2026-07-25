@@ -32,7 +32,7 @@ import { environment } from '../environments/environment';
     ManageSkillsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),

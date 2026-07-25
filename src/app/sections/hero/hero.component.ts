@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { gsap } from 'gsap';
+import { gsap } from 'gsap/dist/gsap';
 import { ProfileService } from '../../services/profile.service';
 import { ResumeService } from '../../services/resume.service';
 @Component({

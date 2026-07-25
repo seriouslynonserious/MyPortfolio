@@ -1,11 +1,15 @@
+
 import {
   AfterViewInit,
   Component,
   ElementRef,
-  ViewChild,
-  OnDestroy
+  Inject,
+  OnDestroy,
+  PLATFORM_ID,
+  ViewChild
 } from '@angular/core';
 
+import { isPlatformBrowser } from '@angular/common';
 import * as THREE from 'three';
 
 @Component({
@@ -16,22 +20,37 @@ import * as THREE from 'three';
 export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
+
   private clouds!: THREE.Mesh;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
-  private animationId!: number;
   private mesh!: THREE.Mesh;
   private particles!: THREE.Points;
-  private isMouseMoving = false;
-  private mouseStopTimer: any;
- private shootingStars: THREE.Group[] = [];
-private frameCount = 0;
 
+  private animationId: number | null = null;
+  private mouseStopTimer: any;
+
+ 
+  private frameCount = 0;
+
+  private isMouseMoving = false;
   private mouseX = 0;
   private mouseY = 0;
 
+  private readonly isBrowser: boolean;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.initScene();
     this.animate();
 
@@ -39,7 +58,11 @@ private frameCount = 0;
     window.addEventListener('mousemove', this.onMouseMove);
   }
 
-  initScene(): void {
+  private initScene(): void {
+    if (!this.isBrowser || !this.canvasRef) {
+      return;
+    }
+
     const canvas = this.canvasRef.nativeElement;
 
     this.scene = new THREE.Scene();
@@ -51,7 +74,7 @@ private frameCount = 0;
       100
     );
 
-    this.camera.position.z =4.2;
+    this.camera.position.z = 4.2;
 
     this.renderer = new THREE.WebGLRenderer({
       canvas,
@@ -59,14 +82,30 @@ private frameCount = 0;
       alpha: true
     });
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
+
+    this.renderer.setPixelRatio(
+      Math.min(window.devicePixelRatio || 1, 2)
+    );
+
     const textureLoader = new THREE.TextureLoader();
 
-    const earthTexture = textureLoader.load('assets/textures/earth-map.jpg');
-    const bumpTexture = textureLoader.load('assets/textures/earth-bump.jpg');
+    const earthTexture = textureLoader.load(
+      'assets/textures/earth-map.jpg'
+    );
 
-    const geometry = new THREE.SphereGeometry(1.45, 64, 64);
+    const bumpTexture = textureLoader.load(
+      'assets/textures/earth-bump.jpg'
+    );
+
+    const geometry = new THREE.SphereGeometry(
+      1.45,
+      64,
+      64
+    );
 
     const material = new THREE.MeshStandardMaterial({
       map: earthTexture,
@@ -76,11 +115,22 @@ private frameCount = 0;
       metalness: 0.1
     });
 
-    this.mesh = new THREE.Mesh(geometry, material);
-    this.scene.add(this.mesh);
-    const cloudTexture = textureLoader.load('assets/textures/earth-clouds.jpg');
+    this.mesh = new THREE.Mesh(
+      geometry,
+      material
+    );
 
-    const cloudGeometry = new THREE.SphereGeometry(1.48, 64, 64);
+    this.scene.add(this.mesh);
+
+    const cloudTexture = textureLoader.load(
+      'assets/textures/earth-clouds.jpg'
+    );
+
+    const cloudGeometry = new THREE.SphereGeometry(
+      1.48,
+      64,
+      64
+    );
 
     const cloudMaterial = new THREE.MeshStandardMaterial({
       map: cloudTexture,
@@ -89,173 +139,192 @@ private frameCount = 0;
       depthWrite: false
     });
 
-    this.clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+    this.clouds = new THREE.Mesh(
+      cloudGeometry,
+      cloudMaterial
+    );
+
     this.scene.add(this.clouds);
 
-    const sunLight = new THREE.DirectionalLight(0xffffff, 3);
+    const sunLight = new THREE.DirectionalLight(
+      0xffffff,
+      3
+    );
+
     sunLight.position.set(5, 3, 5);
     this.scene.add(sunLight);
 
-    const blueLight = new THREE.PointLight(0x00d4ff, 1.5, 20);
+    const blueLight = new THREE.PointLight(
+      0x00d4ff,
+      1.5,
+      20
+    );
+
     blueLight.position.set(-3, 1, 4);
     this.scene.add(blueLight);
-    this.createParticles();
-    this.createShootingStars();
+
   }
 
-  animate = (): void => {
-    this.animationId = requestAnimationFrame(this.animate);
+  private animate = (): void => {
+    if (
+      !this.isBrowser ||
+      typeof requestAnimationFrame === 'undefined' ||
+      !this.renderer ||
+      !this.scene ||
+      !this.camera ||
+      !this.mesh
+    ) {
+      return;
+    }
+
+    this.animationId = requestAnimationFrame(
+      this.animate
+    );
 
     if (this.isMouseMoving) {
       const fullRotationY = this.mouseX * Math.PI;
       const fullRotationX = this.mouseY * Math.PI;
 
-      this.mesh.rotation.y += (fullRotationY - this.mesh.rotation.y) * 0.08;
-      this.mesh.rotation.x += (fullRotationX - this.mesh.rotation.x) * 0.08;
+      this.mesh.rotation.y +=
+        (fullRotationY - this.mesh.rotation.y) * 0.08;
+
+      this.mesh.rotation.x +=
+        (fullRotationX - this.mesh.rotation.x) * 0.08;
     } else {
       this.mesh.rotation.y += 0.004;
       this.mesh.rotation.x += 0.001;
     }
 
     if (this.clouds) {
-      this.clouds.rotation.y = this.mesh.rotation.y + 0.15;
-      this.clouds.rotation.x = this.mesh.rotation.x;
+      this.clouds.rotation.y =
+        this.mesh.rotation.y + 0.15;
+
+      this.clouds.rotation.x =
+        this.mesh.rotation.x;
     }
 
     if (this.particles) {
       this.particles.rotation.y += 0.0008;
     }
-     this.frameCount++;
 
-this.shootingStars.forEach((star: any) => {
-  if (star.userData.delay > 0) {
-    star.userData.delay--;
-    star.visible = false;
-    return;
-  }
+    this.frameCount++;
 
-  star.visible = true;
+    
 
-  star.position.x -= star.userData.speed;
-  star.position.y -= star.userData.speed * 0.55;
-
-  if (star.position.x < -5 || star.position.y < -3) {
-    star.position.x = 4 + Math.random() * 4;
-    star.position.y = 2.5 - Math.random() * 4;
-    star.userData.delay = 120 + Math.random() * 160;
-  }
-});
-
-    this.renderer.render(this.scene, this.camera);
+    this.renderer.render(
+      this.scene,
+      this.camera
+    );
   };
 
-  onMouseMove = (event: MouseEvent): void => {
-    this.mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
-    this.mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+  private onMouseMove = (
+    event: MouseEvent
+  ): void => {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    this.mouseX =
+      (event.clientX / window.innerWidth - 0.5) * 2;
+
+    this.mouseY =
+      (event.clientY / window.innerHeight - 0.5) * 2;
 
     this.isMouseMoving = true;
 
-    clearTimeout(this.mouseStopTimer);
+    if (this.mouseStopTimer) {
+      clearTimeout(this.mouseStopTimer);
+    }
 
     this.mouseStopTimer = setTimeout(() => {
       this.isMouseMoving = false;
     }, 700);
   };
 
-  onResize = (): void => {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
-
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-  };
-
-  ngOnDestroy(): void {
-    cancelAnimationFrame(this.animationId);
-
-    window.removeEventListener('resize', this.onResize);
-    window.removeEventListener('mousemove', this.onMouseMove);
-
-    this.renderer.dispose();
-  }
- createShootingStars(): void {
-  for (let i = 0; i < 4; i++) {
-    const group = new THREE.Group();
-
-    const headGeometry = new THREE.SphereGeometry(0.045, 16, 16);
-
-    const headMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 1
-    });
-
-    const head = new THREE.Mesh(headGeometry, headMaterial);
-    group.add(head);
-
-    const trailGeometry = new THREE.CylinderGeometry(
-      0.012,
-      0.001,
-      1.4,
-      12
-    );
-
-    const trailMaterial = new THREE.MeshBasicMaterial({
-      color: 0x00d4ff,
-      transparent: true,
-      opacity: 0.85,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
-
-    const trail = new THREE.Mesh(trailGeometry, trailMaterial);
-
-    trail.rotation.z = Math.PI / 2;
-    trail.position.x = 0.7;
-
-    group.add(trail);
-
-    group.position.set(
-      4 + Math.random() * 3,
-      2.5 - Math.random() * 4,
-      1
-    );
-
-    group.rotation.z = -0.55;
-
-    group.userData = {
-      speed: 0.055 + Math.random() * 0.035,
-      delay: i * 90
-    };
-
-    this.shootingStars.push(group);
-    this.scene.add(group);
-  }
-}
-
-  createParticles(): void {
-    const particleCount = 900;
-    const positions = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount * 3; i++) {
-      positions[i] = (Math.random() - 0.5) * 12;
+  private onResize = (): void => {
+    if (
+      !this.isBrowser ||
+      !this.camera ||
+      !this.renderer
+    ) {
+      return;
     }
 
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(positions, 3)
+    this.camera.aspect =
+      window.innerWidth / window.innerHeight;
+
+    this.camera.updateProjectionMatrix();
+
+    this.renderer.setSize(
+      window.innerWidth,
+      window.innerHeight
+    );
+  };
+
+
+
+  ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    if (
+      this.animationId !== null &&
+      typeof cancelAnimationFrame !== 'undefined'
+    ) {
+      cancelAnimationFrame(
+        this.animationId
+      );
+
+      this.animationId = null;
+    }
+
+    if (this.mouseStopTimer) {
+      clearTimeout(this.mouseStopTimer);
+      this.mouseStopTimer = null;
+    }
+
+    window.removeEventListener(
+      'resize',
+      this.onResize
     );
 
-    const material = new THREE.PointsMaterial({
-      color: 0x00d4ff,
-      size: 0.015,
-      transparent: true,
-      opacity: 0.8
-    });
+    window.removeEventListener(
+      'mousemove',
+      this.onMouseMove
+    );
 
-    this.particles = new THREE.Points(geometry, material);
-    this.scene.add(this.particles);
+    this.disposeThreeResources();
   }
 
+  private disposeThreeResources(): void {
+    if (!this.scene) {
+      return;
+    }
 
+    this.scene.traverse(
+      (object: THREE.Object3D) => {
+        const mesh = object as THREE.Mesh;
+
+        if (mesh.geometry) {
+          mesh.geometry.dispose();
+        }
+
+        if (mesh.material) {
+          if (Array.isArray(mesh.material)) {
+            mesh.material.forEach(
+              material => material.dispose()
+            );
+          } else {
+            mesh.material.dispose();
+          }
+        }
+      }
+    );
+
+    if (this.renderer) {
+      this.renderer.dispose();
+    }
+  }
 }
+

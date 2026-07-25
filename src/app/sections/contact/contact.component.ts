@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { gsap } from 'gsap';
+import { gsap } from 'gsap/dist/gsap';
 declare let emailjs: any;
 
 
