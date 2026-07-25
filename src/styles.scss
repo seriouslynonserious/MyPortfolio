@@ -28,9 +28,25 @@ html {
 body {
   background: var(--bg-dark);
   color: var(--text-main);
-  font-family: Arial, sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   overflow-x: hidden;
   cursor: url("assets/cursor/lightsaber.cur") 4 4, auto;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.4), rgba(139, 92, 246, 0.4));
+  border-radius: 5px;
+  border: 2px solid #050505;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.8), rgba(139, 92, 246, 0.8));
 }
 
 /* DARK READABILITY OVERLAY */

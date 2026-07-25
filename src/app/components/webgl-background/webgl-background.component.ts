@@ -109,8 +109,8 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
 
     const material = new THREE.MeshStandardMaterial({
       map: earthTexture,
-      bumpMap: bumpTexture,
-      bumpScale: 0.05,
+      normalMap: bumpTexture,
+      normalScale: new THREE.Vector2(0.28, 0.28),
       roughness: 0.8,
       metalness: 0.1
     });
@@ -146,9 +146,15 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
 
     this.scene.add(this.clouds);
 
+    const ambientLight = new THREE.AmbientLight(
+      0xffffff,
+      0.22
+    );
+    this.scene.add(ambientLight);
+
     const sunLight = new THREE.DirectionalLight(
       0xffffff,
-      3
+      2.8
     );
 
     sunLight.position.set(5, 3, 5);
@@ -156,12 +162,13 @@ export class WebglBackgroundComponent implements AfterViewInit, OnDestroy {
 
     const blueLight = new THREE.PointLight(
       0x00d4ff,
-      1.5,
+      1.8,
       20
     );
 
     blueLight.position.set(-3, 1, 4);
     this.scene.add(blueLight);
+
 
   }
 

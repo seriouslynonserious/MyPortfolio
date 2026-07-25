@@ -1,0 +1,23 @@
+<header class="navbar" [class.scrolled]="isScrolled">
+  <div class="navbar-container">
+    <a href="#" class="logo">
+      <span class="logo-dot">✦</span> Shivam Mishra
+    </a>
+
+    <!-- Hamburger menu icon for mobile -->
+    <button class="nav-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav class="nav-links" [class.active]="isMenuOpen">
+      <a (click)="scrollToSection('hero', $event)" class="nav-link" [class.active]="activeSection === 'hero'">Home</a>
+      <a (click)="scrollToSection('about', $event)" class="nav-link" [class.active]="activeSection === 'about'">About</a>
+      <a (click)="scrollToSection('skills', $event)" class="nav-link" [class.active]="activeSection === 'skills'">Skills</a>
+      <a (click)="scrollToSection('experience', $event)" class="nav-link" [class.active]="activeSection === 'experience'">Experience</a>
+      <a (click)="scrollToSection('projects', $event)" class="nav-link" [class.active]="activeSection === 'projects'">Projects</a>
+      <a (click)="scrollToSection('contact', $event)" class="nav-link" [class.active]="activeSection === 'contact'">Contact</a>
+    </nav>
+  </div>
+</header>

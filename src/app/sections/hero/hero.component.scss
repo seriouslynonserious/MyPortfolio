@@ -15,26 +15,33 @@
 }
 
 h1 {
-  font-size: clamp(58px, 12vw, 150px);
-  line-height: 0.9;
+  font-size: clamp(58px, 11vw, 130px);
+  line-height: 0.95;
   text-transform: uppercase;
-  color: var(--text-main);
-  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.75);
+  font-weight: 800;
+  letter-spacing: -2px;
+  background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 50px rgba(0, 212, 255, 0.15);
 }
 
 h2 {
-  font-size: clamp(22px, 4vw, 44px);
+  font-size: clamp(20px, 3vw, 36px);
   margin-top: 24px;
   color: var(--text-muted);
   max-width: 900px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
 }
 
 .summary {
   max-width: 700px;
   margin-top: 24px;
-  font-size: 20px;
-  line-height: 1.6;
-  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-soft);
+  font-weight: 300;
 }
 
 .actions {
@@ -48,18 +55,45 @@ h2 {
 .actions a {
   color: var(--text-main);
   text-decoration: none;
-  border: 1px solid var(--card-border);
-  background: var(--card-bg);
-  padding: 14px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px 28px;
   border-radius: 40px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .actions a:hover {
+  transform: translateY(-3px);
   border-color: var(--accent);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+  background: rgba(0, 212, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.25);
+  color: #ffffff;
 }
+
+.actions .admin-link {
+  border: none;
+  background: transparent;
+  color: var(--text-soft);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  padding: 14px 18px;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: var(--accent);
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
 
 /* Mobile view */
 @media (max-width: 768px) {

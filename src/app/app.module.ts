@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebglBackgroundComponent } from './components/webgl-background/webgl-background.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { HeroComponent } from './sections/hero/hero.component';
 import { AboutComponent } from './sections/about/about.component';
 import { SkillsComponent } from './sections/skills/skills.component';
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent,
     WebglBackgroundComponent,
+    NavigationComponent,
     HeroComponent,
     AboutComponent,
     SkillsComponent,
