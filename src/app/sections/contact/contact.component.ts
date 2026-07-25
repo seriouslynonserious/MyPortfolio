@@ -13,8 +13,7 @@ export class ContactComponent {
   
   formFolding = false;
   botFlying = false;
-  
-
+  emailSendingState: 'idle' | 'sending' | 'success' | 'error' = 'idle';
 
   form = {
     name: '',
@@ -63,6 +62,7 @@ export class ContactComponent {
     }
 
     this.botMessage = 'Perfect! Folding your message and packing it inside me...';
+    this.emailSendingState = 'sending';
     emailjs.send(
       'service_yj0dzmo',
       'template_cn4jkfc',
@@ -70,25 +70,30 @@ export class ContactComponent {
         from_name: this.form.name,
         from_email: this.form.email,
         message: this.form.message,
-        to_email: 'shivaay251202@gmail.com'
+        email: 'shivaay251202@gmail.com'
       }
     )
       .then(() => {
-
-        this.botMessage = 'Message sent successfully 🚀';
-
+        this.emailSendingState = 'success';
         this.form = {
           name: '',
           email: '',
           message: ''
         };
-
+        if (!this.botFlying) {
+          this.botMessage = 'Delivered successfully! Shivam will contact you soon.';
+        }
       })
       .catch((error: any) => {
-
-        console.error(error);
-
-        this.botMessage = 'Failed to send message.';
+        console.error('EMAILJS ERROR DETAILED:', error);
+        if (error && typeof error === 'object') {
+          console.error('EMAILJS ERROR STATUS:', error.status);
+          console.error('EMAILJS ERROR TEXT:', error.text);
+        }
+        this.emailSendingState = 'error';
+        if (!this.botFlying) {
+          this.botMessage = 'Failed to deliver message. Please try again or contact Shivam directly.';
+        }
       });
 
     setTimeout(() => {
@@ -160,13 +165,13 @@ export class ContactComponent {
   }
 
   private resetContact(): void {
-    this.botMessage = 'Delivered successfully! Shivam will contact you soon.';
-
-    this.form = {
-      name: '',
-      email: '',
-      message: ''
-    };
+    if (this.emailSendingState === 'success') {
+      this.botMessage = 'Delivered successfully! Shivam will contact you soon.';
+    } else if (this.emailSendingState === 'error') {
+      this.botMessage = 'Failed to deliver message. Please try again or contact Shivam directly.';
+    } else {
+      this.botMessage = 'Still delivering your message...';
+    }
 
     this.formFolding = false;
     this.botFlying = false;
