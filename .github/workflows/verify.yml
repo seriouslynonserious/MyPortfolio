@@ -12,6 +12,18 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - run: npx --yes @lhci/cli@0.15.1 collect
+      - run: node scripts/lighthouse-summary.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-verification
+          path: |
+            playwright-report
+            test-results
+            .lighthouseci
   backend:
     runs-on: ubuntu-latest
     steps:

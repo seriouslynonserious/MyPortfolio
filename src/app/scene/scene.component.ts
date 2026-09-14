@@ -75,6 +75,7 @@ export class SceneComponent implements OnDestroy {
     effect(() => {
       this.s.failed();
       this.s.pulse();
+      this.s.cameraReset();
       this.s.selected();
       this.s.reduced();
       this.update?.();
@@ -322,6 +323,7 @@ export class SceneComponent implements OnDestroy {
     renderer.domElement.addEventListener("pointerup", up);
     renderer.domElement.addEventListener("dblclick", focus);
     window.addEventListener("keydown", key);
+    let lastReset = this.s.cameraReset();
     this.update = () => {
       burst = performance.now();
       nodes[2].material.color.set(this.s.failed() ? 0xe8977d : 0xa7bb91);
@@ -329,7 +331,8 @@ export class SceneComponent implements OnDestroy {
       routeLines[1].visible = !this.s.failed();
       routeLines[2].visible = !this.s.failed();
       routeLines[3].visible = this.s.failed();
-      if (!this.s.selected()) {
+      if (lastReset !== this.s.cameraReset()) {
+        lastReset = this.s.cameraReset();
         controls.target.set(0, 0, 0);
         camera.position.set(0, 2.5, 12);
       }

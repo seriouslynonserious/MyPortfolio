@@ -29,7 +29,11 @@
                 "output": "/"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "node_modules/@fontsource-variable/dm-sans/index.css",
+              "node_modules/@fontsource-variable/space-grotesk/index.css",
+              "src/styles.scss"
+            ],
             "outputPath": "dist/portfolio"
           },
           "configurations": {

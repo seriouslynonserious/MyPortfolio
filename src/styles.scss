@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 :root {
   --bg: #0c0e0d;
   --panel: #121613;
@@ -19,7 +18,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font:
-    15px/1.65 "DM Sans",
+    15px/1.65 "DM Sans Variable",
     sans-serif;
 }
 button,
@@ -68,7 +67,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Space Grotesk Variable", sans-serif;
   font-weight: 500;
 }
 h2 {
@@ -106,7 +105,7 @@ header {
 }
 .wordmark {
   font:
-    700 23px "Space Grotesk",
+    700 23px "Space Grotesk Variable",
     sans-serif;
   letter-spacing: -1px;
 }
@@ -234,7 +233,7 @@ h1 {
   right: -65px;
   top: 265px;
   transform: rotate(-90deg);
-  font: 600 88px "Space Grotesk";
+  font: 600 88px "Space Grotesk Variable";
   letter-spacing: -5px;
   color: #1c221b;
   z-index: -1;
@@ -257,7 +256,7 @@ h1 {
   border: 0;
 }
 .metrics strong {
-  font: 500 45px "Space Grotesk";
+  font: 500 45px "Space Grotesk Variable";
   letter-spacing: -2px;
 }
 .metrics strong span {

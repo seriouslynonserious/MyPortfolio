@@ -266,11 +266,7 @@
       }
     </section>
     <section id="lab" class="lab-section reveal">
-      @defer (on viewport) {
-        <engineering-lab />
-      } @placeholder {
-        <h2>Explore the engineering lab.</h2>
-      }
+      <engineering-lab />
     </section>
     <section id="experience" class="experience-section reveal">
       <div class="section-top">
@@ -333,11 +329,7 @@
       </article>
     </section>
     <section id="assistant" class="assistant-section reveal">
-      @defer (on viewport) {
-        <portfolio-assistant />
-      } @placeholder {
-        <h2>Ask about my work.</h2>
-      }
+      <portfolio-assistant />
     </section>
     <section id="contact" class="contact-section reveal">
       <div>
@@ -456,7 +448,7 @@
       autofocus
       placeholder="Where do you want to go?"
       [(ngModel)]="query"
-      (keydown.enter)="filtered()[0] && command(filtered()[0])"
+      (keydown.enter)="$event.preventDefault(); filtered()[0] && command(filtered()[0])"
     />
     <div class="command-list">
       @for (c of filtered(); track c) {

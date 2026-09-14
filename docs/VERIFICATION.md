@@ -3,9 +3,9 @@
 ## Verified locally
 
 - Angular 21 strict TypeScript/template compilation and optimized production build.
-- Initial production transfer estimate ~66 KB; Three.js is a separate deferred payload (~150 KB compressed plus controls).
+- Initial production JS/CSS bundle transfer estimate ~66 KB (fonts are additional); Three.js is a separate deferred payload (~150 KB compressed plus controls).
 - npm dependency audit: zero vulnerabilities at install time.
-- Three Node tests: unset backend refusal, HTTPS origin validation, API-before-SPA rewrite ordering.
+- Four Node tests, including preview recovery across rebuilds: unset backend refusal, HTTPS origin validation, API-before-SPA rewrite ordering.
 - Eight Java tests: health, validation, unconfigured AI/contact errors, honeypot rejection, body bound, rate limiting, and spoofed forwarding-header behavior.
 - Browser: live Three.js rendering, HTML node inspection, play mode, Redis offline/overload, three-stage repair back to 28%, and database optimization from 4.2s to 180ms.
 - Production browser console: no runtime errors observed.

@@ -8,6 +8,7 @@ export class SystemService {
   );
   readonly selected = signal("");
   readonly pulse = signal(0);
+  readonly cameraReset = signal(0);
   readonly requests = signal(0);
   readonly load = signal(28);
   readonly traffic = signal(10000);
@@ -57,6 +58,7 @@ export class SystemService {
     }
   }
   reset() {
+    this.cameraReset.update(v => v + 1);
     this.failed.set(false);
     this.selected.set("");
     this.load.set(28);
