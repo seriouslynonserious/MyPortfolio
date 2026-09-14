@@ -55,3 +55,7 @@ API redirects must precede the SPA fallback. The frontend exclusively calls rela
 7. Merge only after reviewing the preview; production deployment then keeps the original domain. Retain the prior Netlify deployment for rollback.
 
 No live AI provider or SMTP message was invoked during local verification. Cloud project, credentials, service region, and Netlify settings must be provided/configured before these external checks can pass.
+
+## Frontend-only manual release
+
+Until Cloud Run and provider credentials are configured, build the portfolio with `npm run build`, then run `node scripts/netlify-proxy.mjs --static`. Upload the contents of `dist/portfolio/browser` to the existing Netlify project's Deploys page. This explicit mode returns a JSON 404 for `/api/*` instead of routing API requests into Angular; AI and form delivery remain unavailable, with direct email available. It also emits security headers for manual uploads. The normal build still refuses a missing backend, preventing accidental omission when publishing the full stack. Rebuild without `--static` once `CLOUD_RUN_BACKEND` is configured.

@@ -359,7 +359,7 @@ export class SceneComponent implements OnDestroy {
             ? [0, 1, 2, 3, 2, 1, 0]
             : [0, 1, 2, 1, 0];
         const progress =
-          Math.min(0.999, (time - burst) / 2200) * (path.length - 1);
+          Math.max(0, Math.min(0.999, (time - burst) / 2200)) * (path.length - 1);
         const segment = Math.floor(progress);
         p.visible = active && i === 0;
         if (p.visible)
