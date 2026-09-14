@@ -27,6 +27,7 @@ import { AssistantComponent } from "./assistant/assistant.component";
 })
 export class AppComponent implements OnDestroy {
   s = inject(SystemService);
+  readonly autoScene = innerWidth >= 1100 && !this.s.reduced();
   projects = projects;
   resume = resume;
   technologies = technologies;
@@ -64,7 +65,7 @@ export class AppComponent implements OnDestroy {
   ];
   constructor() {
     afterNextRender(async () => {
-      if (this.s.reduced()) return;
+      if (this.s.reduced() || innerWidth < 900) return;
       const [{ gsap }, { ScrollTrigger }] = await Promise.all([
         import("gsap"),
         import("gsap/ScrollTrigger"),

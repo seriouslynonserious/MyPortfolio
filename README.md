@@ -46,7 +46,7 @@ All engineering lab request volumes, timings, outages, database loads, and fixes
 
 Drag the architecture to rotate; click a node or an HTML technology button to inspect. Double click focuses the camera. Shift-drag Redis to detach the cache. Play mode enables controlled zoom, WASD movement, Space request playback, R reset, and Escape exit. Normal page scrolling remains available outside play mode. The command palette supports Cmd/Ctrl+K, arrow keys, Tab, Enter, and Escape. `/terminal` opens the optional shell.
 
-Recruiter mode prioritizes experience and hides the playground. Reduced motion uses the OS preference and a visible toggle. WebGL failure preserves an HTML architecture fallback and technology controls.
+Recruiter mode prioritizes experience and hides the playground. On small screens and with reduced motion enabled, a lightweight SVG system loads first; visitors can activate the full 3D scene on demand. Desktop automatically loads 3D. Reduced motion uses the OS preference and a visible toggle. WebGL failure preserves an HTML architecture fallback and technology controls.
 
 ## Deployment status
 

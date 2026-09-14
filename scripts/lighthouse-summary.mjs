@@ -5,3 +5,8 @@ for (const file of readdirSync('.lighthouseci').filter(f=>f.startsWith('lhr-')&&
   for(const category of Object.values(report.categories))console.log(`${category.title}: ${Math.round(category.score*100)}`);
   for(const audit of Object.values(report.audits).filter(a=>a.score!==null&&a.score<1&&a.details?.type!=='opportunity'))console.log(`Review: ${audit.title} — ${audit.displayValue||''}`);
 }
+
+for (const file of readdirSync('.lighthouseci').filter(f=>f.startsWith('lhr-')&&f.endsWith('.json'))) {
+ const report=JSON.parse(readFileSync('.lighthouseci/'+file,'utf8'));
+ for(const id of ['color-contrast','label-content-name-mismatch'])for(const item of report.audits[id]?.details?.items||[])console.log(id+': '+JSON.stringify(item));
+}

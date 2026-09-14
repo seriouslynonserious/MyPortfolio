@@ -84,3 +84,12 @@ test('WebGL failure preserves HTML access', async ({page}) => {
   await page.locator('.node-buttons').getByRole('button',{name:'Angular',exact:true}).click();
   await expect(page.locator('.node-panel h3')).toHaveText('Angular');
 });
+
+
+test('mobile keeps 3D available on demand without startup cost', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});await page.goto('/');
+  await expect(page.locator('canvas')).toHaveCount(0);
+  await page.getByRole('button',{name:'Load interactive 3D ↗',exact:true}).click();
+  await expect(page.locator('canvas')).toBeVisible();
+  await expect(page.getByText('PLAY MODE ACTIVE',{exact:true})).toBeVisible();
+});

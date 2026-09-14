@@ -37,7 +37,7 @@ import { FormsModule } from "@angular/forms";
           /><button
             type="submit"
             [disabled]="busy() || !question.trim()"
-            aria-label="Send question"
+            aria-label="Send question (↗)"
           >
             {{ busy() ? "…" : "↗" }}
           </button>

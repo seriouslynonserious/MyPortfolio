@@ -106,13 +106,14 @@ export class SceneComponent implements OnDestroy {
     el.appendChild(renderer.domElement);
     const scene = new T.Scene();
     const camera = new T.PerspectiveCamera(40, 1, 0.1, 100);
-    camera.position.set(0, 2.5, 12);
+    const homeDistance = () => Math.max(12, 5.2 / (Math.tan(Math.PI / 9) * Math.max(el.clientWidth / Math.max(el.clientHeight, 1), 0.5)));
+    camera.position.set(0, 2.5, homeDistance());
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.minDistance = 7;
-    controls.maxDistance = 17;
+    controls.maxDistance = 22;
     controls.maxPolarAngle = Math.PI * 0.8;
     const group = new T.Group();
     scene.add(group);
@@ -221,6 +222,7 @@ export class SceneComponent implements OnDestroy {
       renderer.setSize(r.width, r.height);
       camera.aspect = r.width / r.height;
       camera.updateProjectionMatrix();
+      if (!this.s.play() && !this.s.selected()) camera.position.z = homeDistance();
     };
     const ro = new ResizeObserver(resize);
     ro.observe(el);
@@ -286,7 +288,7 @@ export class SceneComponent implements OnDestroy {
       if ((e.target as HTMLElement).matches("input,textarea,select")) return;
       if (e.key === "Escape") {
         controls.target.set(0, 0, 0);
-        camera.position.set(0, 2.5, 12);
+        camera.position.set(0, 2.5, homeDistance());
       }
       if (
         this.s.play() &&
@@ -334,9 +336,10 @@ export class SceneComponent implements OnDestroy {
       if (lastReset !== this.s.cameraReset()) {
         lastReset = this.s.cameraReset();
         controls.target.set(0, 0, 0);
-        camera.position.set(0, 2.5, 12);
+        camera.position.set(0, 2.5, homeDistance());
       }
     };
+    this.update();
     const tick = (time: number) => {
       frame = requestAnimationFrame(tick);
       if (

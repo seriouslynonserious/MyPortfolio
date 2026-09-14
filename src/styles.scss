@@ -178,7 +178,7 @@ h1 {
   margin-top: 24px;
 }
 .hero-stack span {
-  color: #555f54;
+  color: #83917e;
   margin: 0 8px;
 }
 .actions {
@@ -1200,3 +1200,5 @@ footer > div a {
 }
 
 .hero-system{margin-top:38px;border:1px solid var(--line);background:#0f150e}.hero-system .scene-frame{min-height:440px}.hero-inspector{padding:15px 22px;border-top:1px solid var(--line);font:10px monospace;display:flex;justify-content:space-between;gap:15px}.hero-inspector p{font:11px/1.6 monospace}.hero-inspector strong{color:var(--accent)}.architecture-map{padding:35px;background:linear-gradient(90deg,#8fa97808 1px,transparent 1px),linear-gradient(#8fa97808 1px,transparent 1px);background-size:28px 28px}.map-path{display:flex;flex-direction:column;align-items:center;margin:30px 0 20px;gap:7px;color:var(--accent)}.map-path button{padding:12px 25px;background:#141c12;min-width:130px;font:12px monospace}.map-data{display:flex;gap:18px;align-items:center}.map-data .offline{color:#e8977d;border-color:#e8977d}.map-status{font:11px/1.8 monospace;margin-bottom:20px}.map-log{font:10px/1.8 monospace;margin-top:20px;overflow-wrap:anywhere}.recruiter .hero-system{display:none}@media(min-width:1100px){.hero-copy{width:62%}.hero h1{font-size:clamp(56px,5.35vw,77px);letter-spacing:-3.5px}.hero-system{position:absolute;right:5%;top:79px;width:34%;margin:0}.hero-system .scene-frame{min-height:410px}.hero-system system-scene{min-height:410px}.hero-inspector{min-height:64px}.hero-watermark{display:none}.hero-note{margin-top:90px}.hero .actions{gap:10px;flex-wrap:wrap}.hero .resume{margin-left:0}.hero .hero-description{font-size:14px}.hero .hero-stack{font-size:9px}}@media(max-width:600px){.hero-inspector{font-size:9px;padding:14px}.architecture-map{padding:22px}.map-data{gap:9px}.map-data button{min-width:100px;padding:12px}.hero-system .scene-frame{min-height:420px}}
+
+.static-system{padding:28px 20px 95px;min-height:440px}.static-system svg{display:block;width:100%;max-height:285px;margin:12px auto}.static-system .text-link{font:11px monospace;color:var(--accent)}.static-system .eyebrow{font-size:9px}.hero-system .static-system{padding-bottom:105px}

@@ -10,7 +10,7 @@
       <button
         class="command-key"
         (click)="openPalette()"
-        aria-label="Open command palette"
+        aria-label="Open command palette (⌘ K)"
       >
         ⌘ K</button
       ><a class="contact-link" href="#contact">Let's talk <span>↗</span></a>
@@ -42,11 +42,17 @@
         </div>
       </div>
       <div class="hero-system" id="hero-system">        <div class="scene-frame" [class.play-active]="s.play()">
-          @defer (on viewport) {
+          @defer (on interaction; when autoScene || s.play()) {
             <system-scene />
           } @placeholder {
-            <div class="scene-placeholder">
-              ANGULAR → SYSTEM CORE → SPRING BOOT<br />REDIS / MYSQL / CLOUD
+            <div class="scene-placeholder static-system">
+              <p class="eyebrow"><span class="status-dot"></span> SYSTEM ARCHITECTURE</p>
+              <svg viewBox="0 0 360 260" role="img" aria-label="Angular connects through the system core to Spring Boot, Redis, MySQL and Cloud">
+                <g fill="none" stroke="#637c50"><path d="M65 75L180 130L295 75M180 130L80 220M180 130L285 220M180 130V30"/><path d="M65 75H295L285 220H80" stroke-dasharray="4 5"/></g>
+                <g fill="#14200f" stroke="#b5d981"><rect x="32" y="55" width="65" height="36"/><rect x="256" y="55" width="78" height="36"/><rect x="48" y="199" width="65" height="36"/><rect x="251" y="199" width="65" height="36"/><polygon points="180,96 210,113 210,147 180,164 150,147 150,113"/></g>
+                <g fill="#d5e6c5" font-size="10" font-family="monospace" text-anchor="middle"><text x="65" y="78">ANGULAR</text><text x="295" y="78">SPRING</text><text x="80" y="222">CLOUD</text><text x="285" y="222">MYSQL</text><text x="180" y="25">REDIS</text><text x="180" y="133">CORE</text></g>
+              </svg>
+              <button class="text-link" (click)="enterPlay()">Load interactive 3D ↗</button>
             </div>
           } @error {
             <div class="scene-placeholder">
@@ -59,7 +65,7 @@
             ><button (click)="s.reset()">↺ Reset</button
             ><button
               (click)="help.update((v) => !v)"
-              aria-label="Show architecture controls"
+              aria-label="Show architecture controls (?)"
             >
               ?
             </button>
