@@ -1,18 +1,468 @@
-<router-outlet></router-outlet>
-
-
-
-
-<div *ngIf="!isAdminRoute">
-  <app-webgl-background></app-webgl-background>
-  <app-navigation></app-navigation>
-
-  <main class="portfolio">
-    <app-hero></app-hero>
-    <app-about></app-about>
-    <app-skills></app-skills>
-    <app-experience></app-experience>
-    <app-projects></app-projects>
-    <app-contact></app-contact>
+<a class="skip" href="#main">Skip to content</a>
+<div [class.reduced]="s.reduced()" [class.recruiter]="recruiter()">
+  <header>
+    <a href="#" class="wordmark">SHIVAM<span>.DEV</span><sup>®</sup></a>
+    <nav aria-label="Main navigation">
+      <a href="#projects">Work</a><a href="#experience">Experience</a
+      ><a href="#lab">Playground <span>↗</span></a>
+    </nav>
+    <div class="nav-tools">
+      <button
+        class="command-key"
+        (click)="openPalette()"
+        aria-label="Open command palette (⌘ K)"
+      >
+        ⌘ K</button
+      ><a class="contact-link" href="#contact">Let's talk <span>↗</span></a>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="about">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span class="status-dot"></span> SHIVAM MISHRA / FULL STACK SOFTWARE
+          ENGINEER
+        </p>
+        <h1>I BUILD SOFTWARE<br />THAT SURVIVES<br /><em>REAL USERS.</em></h1>
+        <p class="hero-description">
+          From the first interaction to the last database query.<br />I build,
+          debug, and improve software that people depend on.
+        </p>
+        <p class="hero-stack">
+          ANGULAR <span> / </span> JAVA <span> / </span> SPRING BOOT
+          <span> / </span> DISTRIBUTED SYSTEMS
+        </p>
+        <div class="actions">
+          <a class="primary" href="#projects">Explore my work <span>↗</span></a
+          ><button class="secondary" (click)="enterPlay()">
+            <span class="play-icon">▷</span> Enter play mode</button
+          ><a class="resume" [href]="resume" target="_blank" rel="noopener"
+            >View resume ↗</a
+          >
+        </div>
+      </div>
+      <div class="hero-system" id="hero-system">        <div class="scene-frame" [class.play-active]="s.play()">
+          @defer (on interaction; when autoScene || s.play()) {
+            <system-scene />
+          } @placeholder {
+            <div class="scene-placeholder static-system">
+              <p class="eyebrow"><span class="status-dot"></span> SYSTEM ARCHITECTURE</p>
+              <svg viewBox="0 0 360 260" role="img" aria-label="Angular connects through the system core to Spring Boot, Redis, MySQL and Cloud">
+                <g fill="none" stroke="#637c50"><path d="M65 75L180 130L295 75M180 130L80 220M180 130L285 220M180 130V30"/><path d="M65 75H295L285 220H80" stroke-dasharray="4 5"/></g>
+                <g fill="#14200f" stroke="#b5d981"><rect x="32" y="55" width="65" height="36"/><rect x="256" y="55" width="78" height="36"/><rect x="48" y="199" width="65" height="36"/><rect x="251" y="199" width="65" height="36"/><polygon points="180,96 210,113 210,147 180,164 150,147 150,113"/></g>
+                <g fill="#d5e6c5" font-size="10" font-family="monospace" text-anchor="middle"><text x="65" y="78">ANGULAR</text><text x="295" y="78">SPRING</text><text x="80" y="222">CLOUD</text><text x="285" y="222">MYSQL</text><text x="180" y="25">REDIS</text><text x="180" y="133">CORE</text></g>
+              </svg>
+              <button class="text-link" (click)="enterPlay()">Load interactive 3D ↗</button>
+            </div>
+          } @error {
+            <div class="scene-placeholder">
+              The 3D view is unavailable. Explore the same services using the
+              technology buttons.
+            </div>
+          }
+          <div class="scene-controls">
+            <button (click)="s.request()">↗ Send request</button
+            ><button (click)="s.reset()">↺ Reset</button
+            ><button
+              (click)="help.update((v) => !v)"
+              aria-label="Show architecture controls (?)"
+            >
+              ?
+            </button>
+            @if (s.play()) {
+              <button (click)="s.play.set(false)">Exit play mode ×</button>
+            }
+          </div>
+        </div>
+<div class="hero-inspector">@if(node()){<strong>{{node()?.name}}</strong><p>{{node()?.detail}}</p>}@else{<span>Move · Drag · Click</span><a href="#architecture">Inspect the architecture ↗</a>}</div></div>
+      <div class="hero-note">
+        <span>BASED IN INDIA · BUILDING FOR EVERYWHERE</span
+        ><span>SCROLL TO EXPLORE ↓</span>
+      </div>
+      <span class="hero-watermark" aria-hidden="true">ENGINEER.</span>
+    </section>
+    <section class="metrics" aria-label="Engineering impact">
+      <div>
+        <strong>100K<span>+</span></strong>
+        <p>USERS SERVED</p>
+      </div>
+      <div>
+        <strong>66<span>% ↓</span></strong>
+        <p>API LATENCY</p>
+      </div>
+      <div>
+        <strong>32<span>% ↓</span></strong>
+        <p>PAGE LOAD TIME</p>
+      </div>
+      <div>
+        <strong>21<span>% ↑</span></strong>
+        <p>PURCHASES</p>
+      </div>
+      <div>
+        <strong>25<span>% ↑</span></strong>
+        <p>ORGANIC TRAFFIC</p>
+      </div>
+    </section>
+    <section class="architecture-section reveal" id="architecture">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">01 / UNDER THE HOOD</p>
+          <h2>Software is connected.<br /><span>So is my thinking.</span></h2>
+        </div>
+        <p class="section-description">
+          A system you can actually explore.<br />Inspect a service. Follow a
+          request.<br />See what happens when something breaks.
+        </p>
+      </div>
+      <div class="architecture-grid">
+        <div class="architecture-map">
+          <p class="eyebrow">REQUEST PATH / SELECT A SERVICE</p>
+          <div class="map-path">
+            @for (name of ['Angular', 'REST API', 'Spring Boot']; track name) {
+              <button (click)="s.selected.set(name)">{{name}}</button><span>↓</span>
+            }
+            <div class="map-data"><button [class.offline]="s.failed()" (click)="s.selected.set('Redis')">{{s.failed() ? 'Redis offline' : 'Redis cache'}}</button><span>↔</span><button (click)="s.selected.set('MySQL')">MySQL</button></div>
+          </div>
+          <p class="map-status">{{s.failed() ? 'Cache bypass → database pressure' : 'Cache hit → fast response · miss → database'}} </p>
+          <button class="text-link" (click)="s.request()">Send a simulated request ↗</button>
+          <p class="map-log" aria-live="polite">{{s.logs()[0]}}</p>
+        </div>
+        <aside class="node-panel">
+          <p class="eyebrow">
+            {{ node() ? "NODE INSPECTOR" : "SYSTEM OVERVIEW" }}
+          </p>
+          <h3>{{ node()?.name || "Built as a system." }}</h3>
+          <p>
+            {{
+              node()?.detail ||
+                "Frontend precision. Backend reliability. Everything connected by thoughtful engineering decisions."
+            }}
+          </p>
+          @if (node()) {
+            <span class="tag">{{ node()?.zone }} ZONE</span>
+            <div class="repair">
+              <a href="#projects">View related projects ↗</a
+              ><a href="#experience">View experience ↗</a>
+            </div>
+          } @else {
+            <div class="system-summary">
+              <span>10 connected services</span><span>5 engineering zones</span
+              ><span>1 end-to-end perspective</span>
+            </div>
+          }
+          <div class="node-buttons" aria-label="Inspect technology">
+            @for (t of technologies; track t.name) {
+              <button
+                [class.active]="s.selected() === t.name"
+                (click)="s.selected.set(t.name)"
+              >
+                {{ t.name }}
+              </button>
+            }
+          </div>
+          <small>Illustrative architecture · simulations run locally</small>
+        </aside>
+      </div>
+      @if (help() || s.play()) {
+        <div class="controls-help">
+          Drag to rotate · Click a node to inspect · Double click to focus ·
+          Shift + drag Redis to disconnect · Play mode: WASD to move, wheel /
+          pinch to zoom, Space to send a request, R to reset, Esc to exit.
+        </div>
+      }
+    </section>
+    <section class="projects-section reveal" id="projects">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">02 / SELECTED WORK</p>
+          <h2>Real problems.<br /><span>Considered solutions.</span></h2>
+        </div>
+        <a
+          href="https://github.com/seriouslynonserious"
+          target="_blank"
+          rel="noopener"
+          class="text-link"
+          >Explore GitHub ↗</a
+        >
+      </div>
+      @for (p of projects; track p.id) {
+        <article class="project">
+          <div class="project-visual" [class.charity]="p.id === '02'">
+            <div class="mini-top">
+              <span>{{
+                p.id === "01" ? "ONELAP / COMMERCE" : "PUNARJJANI / GIVING"
+              }}</span
+              ><span>↗</span>
+            </div>
+            @if (p.id === "01") {
+              <div class="commerce-art">
+                <span class="tiny-label">CONNECTED COMMERCE</span>
+                <h3>Every order.<br />In motion.</h3>
+                <div class="order-track">
+                  <span>ORDERED<br /><b>✓</b></span
+                  ><i></i><span>PROCESSED<br /><b>✓</b></span
+                  ><i></i><span>DELIVERED<br /><b>↗</b></span>
+                </div>
+                <div class="mini-stats">
+                  <span>PRODUCTS</span><span>PAYMENTS</span
+                  ><span>SHIPMENTS</span>
+                </div>
+              </div>
+            } @else {
+              <div class="charity-art">
+                <span class="tiny-label">THE PRATHEEKSHA REBORN</span>
+                <h3>Small acts.<br />Shared hope.</h3>
+                <div class="giving-grid">
+                  <span>01<br />Blood Wing ↗</span
+                  ><span>02<br />Hair to Care ↗</span
+                  ><span>03<br />Drug Wing ↗</span
+                  ><span>04<br />Gift of Giving ↗</span>
+                </div>
+              </div>
+            }
+            <small>PROJECT WORKFLOW ILLUSTRATION</small>
+          </div>
+          <div class="project-content">
+            <p class="eyebrow">{{ p.id }} / {{ p.kind }}</p>
+            <h3>{{ p.name }}</h3>
+            <h4>{{ p.intro }}</h4>
+            <p>{{ p.description }}</p>
+            <div class="tags">
+              @for (t of p.stack; track t) {
+                <span>{{ t }}</span>
+              }
+            </div>
+            <p class="project-outcome">↗ {{ p.outcome }}</p>
+            <button
+              class="text-link"
+              (click)="detail.set(detail() === p.id ? '' : p.id)"
+              [attr.aria-expanded]="detail() === p.id"
+            >
+              {{
+                detail() === p.id
+                  ? "Close case study −"
+                  : "Read engineering case study ↗"
+              }}
+            </button>
+          </div>
+          @if (detail() === p.id) {
+            <div class="case-detail">
+              <div>
+                <p class="eyebrow">RESPONSIBILITY & CHALLENGES</p>
+                <p>{{ p.detail }}</p>
+              </div>
+              <div>
+                <p class="eyebrow">ENGINEERING DECISION</p>
+                <p>{{ p.decision }}</p>
+                <a [href]="p.link" target="_blank" rel="noopener"
+                  >{{ p.linkLabel }} ↗</a
+                >
+              </div>
+              <div class="architecture-flow">
+                @for (f of p.flow; track f) {
+                  <span>{{ f }}</span>
+                  @if (!$last) {
+                    <b>→</b>
+                  }
+                }
+              </div>
+            </div>
+          }
+        </article>
+      }
+    </section>
+    <section id="lab" class="lab-section reveal">
+      <engineering-lab />
+    </section>
+    <section id="experience" class="experience-section reveal">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">04 / EXPERIENCE IN PRODUCTION</p>
+          <h2>Beyond shipping.<br /><span>Taking ownership.</span></h2>
+        </div>
+        <a [href]="resume" target="_blank" rel="noopener" class="text-link"
+          >Full resume ↗</a
+        >
+      </div>
+      <article class="experience-row">
+        <div>
+          <span class="eyebrow">JAN 2025 — PRESENT</span>
+          <h3>Onelap Telematics</h3>
+          <p>Software Engineer · Noida</p>
+        </div>
+        <div>
+          <h4>Connecting the storefront to the business.</h4>
+          <p>
+            Led Angular development for the e-commerce platform and worked
+            across Spring Boot APIs, CRM workflows, pricing, payments, and
+            shipment management.
+          </p>
+          <div class="experience-details">
+            <div>
+              <span class="eyebrow">DECISION</span>
+              <p>
+                Reusable UI modules, efficient API mapping, and optimized SQL
+                queries.
+              </p>
+            </div>
+            <div>
+              <span class="eyebrow">IMPACT</span>
+              <p>21% higher conversions.<br />32% faster page loads.</p>
+            </div>
+          </div>
+          <a href="#projects">Explore the work ↗</a>
+        </div>
+      </article>
+      <article class="experience-row">
+        <div>
+          <span class="eyebrow">JUN 2024 — NOV 2024</span>
+          <h3>Tech Mahindra</h3>
+          <p>Full Stack Trainee · Noida</p>
+        </div>
+        <div>
+          <h4>Turning service operations into connected workflows.</h4>
+          <p>
+            Built a vehicle service management application for Prime
+            Automobiles, covering service bookings, customer records, vehicle
+            history, and billing. Worked on Angular interfaces, ASP.NET APIs,
+            CRUD operations, and SQL Server integration.
+          </p>
+          <div class="tags">
+            <span>Angular</span><span>ASP.NET Core</span><span>C#</span
+            ><span>SQL Server</span>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section id="assistant" class="assistant-section reveal">
+      <portfolio-assistant />
+    </section>
+    <section id="contact" class="contact-section reveal">
+      <div>
+        <p class="eyebrow">06 / WHAT'S NEXT?</p>
+        <h2>Let's build<br />something<br /><em>that matters.</em></h2>
+        <p>
+          Have a role, a hard problem, or an interesting idea?<br />I'd like to
+          hear about it.
+        </p>
+        <a class="contact-email" href="mailto:shivaay251202@gmail.com"
+          >shivaay251202&#64;gmail.com ↗</a
+        >
+      </div>
+      <form (ngSubmit)="sendContact()">
+        <label for="name">Name</label
+        ><input
+          id="name"
+          name="name"
+          [(ngModel)]="contact.name"
+          required
+          minlength="2"
+          maxlength="80"
+          autocomplete="name"
+        /><label for="email">Email</label
+        ><input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="contact.email"
+          required
+          maxlength="254"
+          autocomplete="email"
+        /><label for="company">Company <span>(optional)</span></label
+        ><input
+          id="company"
+          name="company"
+          [(ngModel)]="contact.company"
+          maxlength="120"
+          autocomplete="organization"
+        /><label for="message">What's on your mind?</label
+        ><textarea
+          id="message"
+          name="message"
+          [(ngModel)]="contact.message"
+          minlength="10"
+          maxlength="3000"
+          required
+          rows="3"
+        ></textarea>
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Website</label
+          ><input
+            id="website"
+            name="website"
+            [(ngModel)]="contact.website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+        <button class="primary" [disabled]="sending()">
+          {{ sending() ? "Sending…" : "Send message ↗" }}
+        </button>
+        <p role="status">{{ contactResult() }}</p>
+      </form>
+    </section>
+    @if (terminal()) {
+      <section id="terminal" class="terminal">
+        <p class="eyebrow">SHIVAM.DEV / TERMINAL</p>
+        <pre aria-live="polite">{{ terminalLines().join("\n") }}</pre>
+        <form (ngSubmit)="terminalRun()">
+          <label for="terminal-command">$</label
+          ><input
+            id="terminal-command"
+            name="terminal-command"
+            [(ngModel)]="terminalInput"
+            autocomplete="off"
+          /><button>Run ↵</button>
+        </form>
+      </section>
+    }
   </main>
+  <footer>
+    <a href="#" class="wordmark">SHIVAM<span>.DEV</span></a
+    ><span>© {{ year }} · BUILT WITH INTENT.</span>
+    <div>
+      <button
+        (click)="recruiter.update((v) => !v)"
+        [attr.aria-pressed]="recruiter()"
+      >
+        Recruiter mode {{ recruiter() ? "on" : "off" }}</button
+      ><button (click)="toggleMotion()" [attr.aria-pressed]="s.reduced()">
+        Reduce motion {{ s.reduced() ? "on" : "off" }}</button
+      ><a
+        href="https://github.com/seriouslynonserious"
+        target="_blank"
+        rel="noopener"
+        >GitHub ↗</a
+      >
+    </div>
+  </footer>
 </div>
+<dialog
+  #palette
+  class="palette"
+  (keydown)="paletteKey($event)"
+  (click)="$event.target === palette && palette.close()"
+>
+  <div>
+    <div class="palette-heading">
+      <span>COMMAND CENTER</span
+      ><button (click)="palette.close()">Close ×</button>
+    </div>
+    <label class="sr-only" for="command">Search commands</label
+    ><input
+      id="command"
+      autofocus
+      placeholder="Where do you want to go?"
+      [(ngModel)]="query"
+      (keydown.enter)="$event.preventDefault(); filtered()[0] && command(filtered()[0])"
+    />
+    <div class="command-list">
+      @for (c of filtered(); track c) {
+        <button (click)="command(c)">{{ c }}<span>↗</span></button>
+      } @empty {
+        <p>No matching commands.</p>
+      }
+    </div>
+    <small>Tab to navigate · Enter to select · Esc to close</small>
+  </div>
+</dialog>

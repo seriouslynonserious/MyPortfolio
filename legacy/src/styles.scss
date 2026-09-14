@@ -1,0 +1,150 @@
+:root {
+  --bg-dark: #050505;
+
+  --card-bg: rgba(4, 8, 16, 0.86);
+  --card-bg-strong: rgba(2, 5, 12, 0.94);
+  --card-border: rgba(255, 255, 255, 0.16);
+
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --text-soft: #94a3b8;
+
+  --accent: #00d4ff;
+  --accent-soft: rgba(0, 212, 255, 0.14);
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* PAGE */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  cursor: url("assets/cursor/lightsaber.cur") 4 4, auto;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.4), rgba(139, 92, 246, 0.4));
+  border-radius: 5px;
+  border: 2px solid #050505;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.8), rgba(139, 92, 246, 0.8));
+}
+
+/* DARK READABILITY OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.8)
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CUSTOM CURSOR */
+a,
+button,
+.actions a {
+  cursor: url("assets/cursor/lightsaber.cur") 4 4, pointer;
+}
+
+/* MAIN SECTIONS */
+section {
+  min-height: 100vh;
+  padding: 100px 8%;
+  position: relative;
+  z-index: 5;
+}
+
+.portfolio {
+  position: relative;
+  z-index: 5;
+}
+
+/* COMMON SECTION LABEL */
+.section-label {
+  color: var(--accent);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* COMMON GLASS CARD */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(22px);
+  border-radius: 28px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+/* WEBGL BACKGROUND LAYER */
+app-webgl-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  section {
+    padding: 80px 6%;
+  }
+
+  .star::after {
+    width: 220px;
+  }
+
+  @keyframes realShootingStar {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) rotate(-32deg) scale(0.7);
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    20% {
+      opacity: 1;
+    }
+
+    42% {
+      opacity: 0;
+      transform: translate(-520px, 360px) rotate(-32deg) scale(1);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-520px, 360px) rotate(-32deg) scale(1);
+    }
+  }
+}
