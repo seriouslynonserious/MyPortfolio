@@ -1,0 +1,245 @@
+{
+  "profile": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/profile/main",
+        "fields": {
+          "heroSubtitle": {
+            "stringValue": "Serving Notice period |Software Engineer @ Onelap | Angular | Java | SQL | Full-Stack Developer | CRM & E-Commerce | Frontend & Backend Development "
+          },
+          "aboutHeading": {
+            "stringValue": ""
+          },
+          "heroLine": {
+            "stringValue": "Building New Features, Debugging Complex Issues & Optimizing Scalable Applications"
+          },
+          "aboutText": {
+            "stringValue": "Java Full Stack Developer with 2 years of experience building scalable backend systems and web applications using Java, Spring Boot,\nand REST APIs. Single-handedly architected a high-traffic e-commerce platform, driving 21% higher conversions and optimizing API\nresponse times  and backend performance tuning. Skilled,\nSQL/database optimization, UI optimization , Rest Api optimization and Angular-based frontend integration"
+          }
+        },
+        "createTime": "2026-07-13T09:24:26.100736Z",
+        "updateTime": "2026-07-13T09:45:06.948494Z"
+      }
+    ]
+  },
+  "projects": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/projects/h9IWOf1pspXBfmpAoprX",
+        "fields": {
+          "description": {
+            "stringValue": "Developed and maintained Onelap.in, an e-commerce and order management platform focused on product management, shipment handling, pricing workflows, and order tracking. Worked as the primary Angular developer, independently handling frontend development and collaborating on backend API integration using Spring Boot.\n\nBuilt responsive and reusable UI modules including product listings, order management dashboards, shipment workflows, dynamic forms, and pricing calculation systems. Integrated REST APIs, optimized application performance, and improved backend API response time from nearly 5 seconds to around 1 second through efficient mapping and query optimization in Spring Boot.\n\nWorked on debugging production issues, implementing new business features, handling state management, and improving user experience across the platform."
+          },
+          "skills": {
+            "stringValue": "Angular |  TypeScript | RxJS | HTML5 | CSS3 / SCSS Bootstrap Angular Material |Spring Boot | Java | REST APIs | SQL Server / MySQL JPA / Hibernate"
+          },
+          "title": {
+            "stringValue": "Onelap.in \u2013 Website "
+          }
+        },
+        "createTime": "2026-05-20T17:10:57.270533Z",
+        "updateTime": "2026-05-20T17:10:57.270533Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/projects/l4F7HCvwP7pTSB4W54EB",
+        "fields": {
+          "description": {
+            "stringValue": "PUNARJJANI \u2013 The Pratheeksha Reborn is a charity management web application developed using Angular, TypeScript, HTML5, CSS3, Bootstrap, and RxJS. The platform was designed to digitally manage multiple social welfare activities including blood donation, hair donation, medicine support, and birthday donations through a single system.\nThe application contains dedicated modules such as Blood Wing, Hair to Care, Drug Wing, and Gift of Giving. Users can register as blood or hair donors, submit medicine support requests, and make birthday donations with details like PAN card number, donation date, email, and contact information.\nAn integrated Admin Panel allows administrators to manage donor records, patient requests, and donation details efficiently. The project uses Angular services and local storage for dynamic data handling and persistence.\nThe application features responsive UI design, reusable Angular components, form validation, routing, and real-time data updates using RxJS BehaviorSubjects.\n"
+          },
+          "skills": {
+            "stringValue": "Angular | TypeScript | HTML5 | CSS3  | Bootstrap  | RxJS | Local Storage (currently used for data persistence) | Angular Services "
+          },
+          "title": {
+            "stringValue": "GMC Charity Wings"
+          }
+        },
+        "createTime": "2026-05-20T17:14:24.888295Z",
+        "updateTime": "2026-05-20T17:26:56.312998Z"
+      }
+    ]
+  },
+  "experience": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/experience/3XtYKEdsZXSI83KmqFg4",
+        "fields": {
+          "companyName": {
+            "stringValue": "Onelap Telematics"
+          },
+          "role": {
+            "stringValue": "Software Engineer"
+          },
+          "location": {
+            "stringValue": "Noida"
+          },
+          "duration": {
+            "stringValue": "Jan 2025  - Present"
+          }
+        },
+        "createTime": "2026-05-20T16:49:42.930379Z",
+        "updateTime": "2026-05-20T16:49:42.930379Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/experience/J5BXcJOt3LTU9bpiGMVH",
+        "fields": {
+          "location": {
+            "stringValue": "Noida"
+          },
+          "duration": {
+            "stringValue": "June 2024 - Nov 2024 "
+          },
+          "role": {
+            "stringValue": "Full Stack Trainee"
+          },
+          "companyName": {
+            "stringValue": "Tech Mahindra"
+          }
+        },
+        "createTime": "2026-05-20T18:12:40.466302Z",
+        "updateTime": "2026-05-20T18:12:40.466302Z"
+      }
+    ]
+  },
+  "experience/3XtYKEdsZXSI83KmqFg4/projects": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/experience/3XtYKEdsZXSI83KmqFg4/projects/jk6RYgNlydX0jONuwI9o",
+        "fields": {
+          "description": {
+            "stringValue": "Developed and maintained Spring Boot backend services for CRM workflows. Optimized REST APIs and SQL queries, improved application performance, and ensured smooth integration across multiple systems."
+          },
+          "title": {
+            "stringValue": "Onelap CRM"
+          },
+          "subtitle": {
+            "stringValue": "Internal Business System"
+          }
+        },
+        "createTime": "2026-05-20T16:51:48.396457Z",
+        "updateTime": "2026-05-20T16:51:48.396457Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/experience/3XtYKEdsZXSI83KmqFg4/projects/mND2Vi1wJZwsENERK3GN",
+        "fields": {
+          "title": {
+            "stringValue": "Onelap Website"
+          },
+          "description": {
+            "stringValue": "Led the full-stack redevelopment of the Onelap e-commerce platform using Angular and Spring Boot. Improved conversions by 21%, reduced load time by 32%, implemented payment workflows, and optimized frontend-backend integration."
+          },
+          "subtitle": {
+            "stringValue": "E-Commerce Platform"
+          }
+        },
+        "createTime": "2026-05-20T16:50:54.458409Z",
+        "updateTime": "2026-05-20T16:50:54.458409Z"
+      }
+    ]
+  },
+  "experience/J5BXcJOt3LTU9bpiGMVH/projects": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/experience/J5BXcJOt3LTU9bpiGMVH/projects/vLdhmXCdbftA7PBOvcp2",
+        "fields": {
+          "subtitle": {
+            "stringValue": "Tech Stack: Angular, ASP.NET Core MVC, ASP.NET Web API, C#, SQL Server, Bootstrap"
+          },
+          "title": {
+            "stringValue": "Vehicle Service Management System \u2013 Prime Automobiles Pvt. Ltd."
+          },
+          "description": {
+            "stringValue": "Developed a vehicle service management application during internship at Tech Mahindra for managing service bookings, customer records, vehicle history, and billing workflows. Worked on frontend development, API integration, CRUD operations, and database management."
+          }
+        },
+        "createTime": "2026-05-20T18:15:40.477970Z",
+        "updateTime": "2026-05-20T18:15:40.477970Z"
+      }
+    ]
+  },
+  "skills": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/skills/0hN7vptEjvvbzxBX77KM",
+        "fields": {
+          "title": {
+            "stringValue": "Tools & Platforms"
+          },
+          "description": {
+            "stringValue": "Maven, GitHub Actions, Docker, AWS, MySQL, IntelliJ IDEA, VS Code"
+          }
+        },
+        "createTime": "2026-05-17T17:30:14.514038Z",
+        "updateTime": "2026-05-17T17:30:14.514038Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/skills/79ajMFWOGGc76jeMtwk5",
+        "fields": {
+          "title": {
+            "stringValue": "Backend"
+          },
+          "description": {
+            "stringValue": "Spring Boot, REST APIs, Microservices, SQL, Firebase, JWT Authentication"
+          }
+        },
+        "createTime": "2026-05-17T17:30:01.856046Z",
+        "updateTime": "2026-05-17T17:30:01.856046Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/skills/No5xM2gZYU1Ph0aSpkD1",
+        "fields": {
+          "title": {
+            "stringValue": "Frontend"
+          },
+          "description": {
+            "stringValue": "Angular, RxJS, React.js, HTML5, CSS3, Tailwind CSS, Bootstrap"
+          }
+        },
+        "createTime": "2026-05-17T17:29:47.333280Z",
+        "updateTime": "2026-05-17T17:29:47.333280Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/skills/ecb2wnpIaHDDDmAH3mQ1",
+        "fields": {
+          "description": {
+            "stringValue": "Java, JavaScript ES6+, TypeScript, C/C++"
+          },
+          "title": {
+            "stringValue": "Languages"
+          }
+        },
+        "createTime": "2026-05-17T17:29:34.810866Z",
+        "updateTime": "2026-05-17T17:29:34.810866Z"
+      },
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/skills/kss0dlwsYL14CXe72DWh",
+        "fields": {
+          "title": {
+            "stringValue": "Core Concepts"
+          },
+          "description": {
+            "stringValue": "Agile, SDLC, API Optimization, Asynchronous Processing, OOP"
+          }
+        },
+        "createTime": "2026-05-17T17:30:25.955251Z",
+        "updateTime": "2026-05-17T17:30:25.955251Z"
+      }
+    ]
+  },
+  "settings": {
+    "documents": [
+      {
+        "name": "projects/my-portfolio-ae975/databases/(default)/documents/settings/resume",
+        "fields": {
+          "updatedAt": {
+            "timestampValue": "2026-07-30T07:29:06.424Z"
+          },
+          "url": {
+            "stringValue": "https://drive.google.com/file/d/1ppa3UJorZxCKYQvozD0Ut-o6K8sLVGt8/view?usp=drivesdk"
+          }
+        },
+        "createTime": "2026-07-05T10:10:49.269619Z",
+        "updateTime": "2026-07-30T07:29:06.821786Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "profile": [
+    {
+      "heroSubtitle": "Serving Notice period |Software Engineer @ Onelap | Angular | Java | SQL | Full-Stack Developer | CRM & E-Commerce | Frontend & Backend Development ",
+      "aboutHeading": "",
+      "heroLine": "Building New Features, Debugging Complex Issues & Optimizing Scalable Applications",
+      "aboutText": "Java Full Stack Developer with 2 years of experience building scalable backend systems and web applications using Java, Spring Boot,\nand REST APIs. Single-handedly architected a high-traffic e-commerce platform, driving 21% higher conversions and optimizing API\nresponse times  and backend performance tuning. Skilled,\nSQL/database optimization, UI optimization , Rest Api optimization and Angular-based frontend integration"
+    }
+  ],
+  "projects": [
+    {
+      "description": "Developed and maintained Onelap.in, an e-commerce and order management platform focused on product management, shipment handling, pricing workflows, and order tracking. Worked as the primary Angular developer, independently handling frontend development and collaborating on backend API integration using Spring Boot.\n\nBuilt responsive and reusable UI modules including product listings, order management dashboards, shipment workflows, dynamic forms, and pricing calculation systems. Integrated REST APIs, optimized application performance, and improved backend API response time from nearly 5 seconds to around 1 second through efficient mapping and query optimization in Spring Boot.\n\nWorked on debugging production issues, implementing new business features, handling state management, and improving user experience across the platform.",
+      "skills": "Angular |  TypeScript | RxJS | HTML5 | CSS3 / SCSS Bootstrap Angular Material |Spring Boot | Java | REST APIs | SQL Server / MySQL JPA / Hibernate",
+      "title": "Onelap.in \u2013 Website "
+    },
+    {
+      "description": "PUNARJJANI \u2013 The Pratheeksha Reborn is a charity management web application developed using Angular, TypeScript, HTML5, CSS3, Bootstrap, and RxJS. The platform was designed to digitally manage multiple social welfare activities including blood donation, hair donation, medicine support, and birthday donations through a single system.\nThe application contains dedicated modules such as Blood Wing, Hair to Care, Drug Wing, and Gift of Giving. Users can register as blood or hair donors, submit medicine support requests, and make birthday donations with details like PAN card number, donation date, email, and contact information.\nAn integrated Admin Panel allows administrators to manage donor records, patient requests, and donation details efficiently. The project uses Angular services and local storage for dynamic data handling and persistence.\nThe application features responsive UI design, reusable Angular components, form validation, routing, and real-time data updates using RxJS BehaviorSubjects.\n",
+      "skills": "Angular | TypeScript | HTML5 | CSS3  | Bootstrap  | RxJS | Local Storage (currently used for data persistence) | Angular Services ",
+      "title": "GMC Charity Wings"
+    }
+  ],
+  "experience": [
+    {
+      "companyName": "Onelap Telematics",
+      "role": "Software Engineer",
+      "location": "Noida",
+      "duration": "Jan 2025  - Present"
+    },
+    {
+      "location": "Noida",
+      "duration": "June 2024 - Nov 2024 ",
+      "role": "Full Stack Trainee",
+      "companyName": "Tech Mahindra"
+    }
+  ],
+  "experience/3XtYKEdsZXSI83KmqFg4/projects": [
+    {
+      "description": "Developed and maintained Spring Boot backend services for CRM workflows. Optimized REST APIs and SQL queries, improved application performance, and ensured smooth integration across multiple systems.",
+      "title": "Onelap CRM",
+      "subtitle": "Internal Business System"
+    },
+    {
+      "title": "Onelap Website",
+      "description": "Led the full-stack redevelopment of the Onelap e-commerce platform using Angular and Spring Boot. Improved conversions by 21%, reduced load time by 32%, implemented payment workflows, and optimized frontend-backend integration.",
+      "subtitle": "E-Commerce Platform"
+    }
+  ],
+  "experience/J5BXcJOt3LTU9bpiGMVH/projects": [
+    {
+      "subtitle": "Tech Stack: Angular, ASP.NET Core MVC, ASP.NET Web API, C#, SQL Server, Bootstrap",
+      "title": "Vehicle Service Management System \u2013 Prime Automobiles Pvt. Ltd.",
+      "description": "Developed a vehicle service management application during internship at Tech Mahindra for managing service bookings, customer records, vehicle history, and billing workflows. Worked on frontend development, API integration, CRUD operations, and database management."
+    }
+  ],
+  "skills": [
+    {
+      "title": "Tools & Platforms",
+      "description": "Maven, GitHub Actions, Docker, AWS, MySQL, IntelliJ IDEA, VS Code"
+    },
+    {
+      "title": "Backend",
+      "description": "Spring Boot, REST APIs, Microservices, SQL, Firebase, JWT Authentication"
+    },
+    {
+      "title": "Frontend",
+      "description": "Angular, RxJS, React.js, HTML5, CSS3, Tailwind CSS, Bootstrap"
+    },
+    {
+      "description": "Java, JavaScript ES6+, TypeScript, C/C++",
+      "title": "Languages"
+    },
+    {
+      "title": "Core Concepts",
+      "description": "Agile, SDLC, API Optimization, Asynchronous Processing, OOP"
+    }
+  ],
+  "settings": [
+    {
+      "updatedAt": "2026-07-30T07:29:06.424Z",
+      "url": "https://drive.google.com/file/d/1ppa3UJorZxCKYQvozD0Ut-o6K8sLVGt8/view?usp=drivesdk"
+    }
+  ],
+  "notes": [
+    "System architecture and incident numbers are illustrative simulations, not evidence of production incidents.",
+    "Additional metrics supplied by owner brief: 100K+ users, 66% API latency reduction, 25% organic traffic growth. Do not conflate different latency measurements."
+  ]
+}
